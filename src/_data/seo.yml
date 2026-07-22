@@ -2,7 +2,7 @@
 # Fica em dado por organização — se um dia quiser editar, é só registrar
 # a collection no config.yml. Mudar o site_url também atualiza o
 # canonical, o Open Graph e as URLs do schema JSON-LD, todos de uma vez.
-site_url: "https://www.deloadfit.app/"
+site_url: "https://deloadfit.netlify.app/"
 title: "deLoad.fit — Dieta, Treino e Prontuário em um App | Teste Grátis"
 description: "Prescreva dieta, treino e acompanhe exames do mesmo paciente em uma tela. Feito para nutricionistas, personal trainers e médicos. 7 dias grátis, sem cartão."
 og_title: "deLoad.fit — Dieta, Treino e Prontuário em um Único App"

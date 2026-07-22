@@ -89,8 +89,10 @@ O template referencia esses dois arquivos com `?v=N`. Editando-os, **suba o
 número** em `src/index.njk`, senão o navegador do visitante pode continuar
 com a versão antiga por até um dia (ver política de cache no `netlify.toml`).
 
-## Pendência antes de divulgar
+## Endereço do site
 
 `src/_data/seo.yml` tem um campo `site_url` que alimenta o canonical, o Open
-Graph e as URLs do schema JSON-LD — está como `https://www.deloadfit.app/`.
-Se o endereço final for outro, troque só ali; o template propaga sozinho.
+Graph e as URLs do schema JSON-LD — hoje é `https://deloadfit.netlify.app/`,
+o domínio que o Netlify gerou. Trocando para um domínio próprio no futuro,
+atualize só ali (e o mesmo valor em `src/admin/config.yml`); o template
+propaga sozinho para o resto da página.

@@ -6,8 +6,8 @@ backend:
 # o site atualiza sozinho, geralmente em menos de um minuto.
 publish_mode: simple
 locale: "pt"
-site_url: "https://www.deloadfit.app/"
-display_url: "https://www.deloadfit.app/"
+site_url: "https://deloadfit.netlify.app/"
+display_url: "https://deloadfit.netlify.app/"
 
 # Imagens novas entram aqui dentro de src/assets, então o build do Eleventy
 # já leva elas junto sem configuração extra.

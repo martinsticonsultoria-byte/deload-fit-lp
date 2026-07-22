@@ -320,29 +320,37 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger-up').f
   heads.forEach(h => { if (h !== heroTitle) wrIO.observe(h); });
 })();
 
-/* ─── Ciclo: carrossel de showcase ─── */
+/* ─── Carrossel de showcase (ciclo do atendimento + app do paciente) ─── */
 (function() {
-  const track = document.getElementById('cicloTrack');
-  if (!track) return;
-  const prev = document.getElementById('cicloPrev');
-  const next = document.getElementById('cicloNext');
-  const counter = document.getElementById('cicloCounter');
-  const total = track.children.length;
+  function initCarousel(trackId, prevId, nextId, counterId) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    const prev = document.getElementById(prevId);
+    const next = document.getElementById(nextId);
+    const counter = document.getElementById(counterId);
+    const total = track.children.length;
 
-  function cardStep() {
-    return track.children[0].offsetWidth + 20; // largura do card + gap
+    function cardStep() {
+      return track.children[0].offsetWidth + 20; // largura do card + gap
+    }
+    function update() {
+      const atStart = track.scrollLeft <= 4;
+      const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      // no fim do trilho o último card já está visível, mesmo sem scrollLeft suficiente
+      const i = atEnd ? total - 1 : Math.min(total - 1, Math.round(track.scrollLeft / cardStep()));
+      counter.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      prev.disabled = atStart;
+      next.disabled = atEnd;
+    }
+    prev.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior: 'smooth' }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   }
-  function update() {
-    const i = Math.min(total - 1, Math.round(track.scrollLeft / cardStep()));
-    counter.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
-    prev.disabled = track.scrollLeft <= 4;
-    next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
-  }
-  prev.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
-  next.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior: 'smooth' }));
-  track.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+
+  initCarousel('cicloTrack', 'cicloPrev', 'cicloNext', 'cicloCounter');
+  initCarousel('appTrack', 'appPrev', 'appNext', 'appCounter');
 })();
 
 /* ─── Planos: toggle mensal/anual (abre em anual, blueprint §7) ─── */
@@ -440,6 +448,180 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger-up').f
       }
     });
   }, { threshold: 0.15 }).observe(grid);
+})();
+
+/* ─── CTAs, âncoras e links externos ───────────────────────────────────────
+   Preencha LINKS quando as URLs reais existirem. Enquanto um campo estiver
+   vazio, o botão cai num destino interno coerente da própria página em vez
+   de não fazer nada.                                                      */
+(function () {
+  const LINKS = {
+    signup:      'https://www.deloadfit.app/',
+    appStore:    '',   // ex.: 'https://apps.apple.com/br/app/...'
+    playStore:   '',   // ex.: 'https://play.google.com/store/apps/details?id=...'
+    email:       'leo-barros@unifebe.edu.br',   // vira mailto:
+    whatsapp:    '5549991566172',  // +55 49 99156-6172 (vira wa.me/)
+    instagram:   '',   // ex.: 'https://instagram.com/deload.fit'
+    termos:      '',
+    privacidade: '',
+    lgpd:        ''
+  };
+
+  const NAV_H = 84; // altura da nav fixa, para a seção não ficar por baixo dela
+  const behavior = REDUCED_MOTION ? 'auto' : 'smooth';
+
+  function closeMobileNav() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('navMobile');
+    if (m && m.classList.contains('open')) { h.classList.remove('open'); m.classList.remove('open'); }
+  }
+
+  function scrollToSection(selector) {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    closeMobileNav();
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - NAV_H, behavior });
+  }
+
+  function leave(url) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  /* Âncoras internas: nav, menu mobile e footer. O href já aponta para a
+     seção certa; aqui só compensamos a nav fixa e fechamos o menu mobile. */
+  document.querySelectorAll('a[href^="#"]:not([data-link])').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      e.preventDefault();
+      scrollToSection(id);
+      history.replaceState(null, '', id);
+    });
+  });
+
+  /* Botões que só rolam para uma seção (ex.: "Ver os planos" do hero) */
+  document.querySelectorAll('[data-goto]').forEach(b => {
+    b.addEventListener('click', () => scrollToSection(b.dataset.goto));
+  });
+
+  /* CTAs de conversão. Sem URL de cadastro configurada, "Começar grátis"
+     leva para os planos e os botões de plano levam para o CTA final. */
+  document.querySelectorAll('[data-cta]').forEach(b => {
+    const cta = b.dataset.cta;
+    b.addEventListener('click', () => {
+      if (cta.startsWith('plano-')) {
+        if (LINKS.signup) {
+          const sep = LINKS.signup.includes('?') ? '&' : '?';
+          leave(LINKS.signup + sep + 'plano=' + cta.replace('plano-', ''));
+        } else {
+          scrollToSection('#cta-section');
+        }
+        return;
+      }
+      LINKS.signup ? leave(LINKS.signup) : scrollToSection('#planos');
+    });
+  });
+
+  /* Links externos. Sem URL configurada o elemento fica inerte, em vez de
+     pular para o topo da página. Vale para <a> e para <button>. */
+  document.querySelectorAll('[data-link]').forEach(el => {
+    const key = el.dataset.link;
+    let url = LINKS[key] || '';
+    if (url && key === 'email') url = 'mailto:' + url;
+    if (url && key === 'whatsapp') url = 'https://wa.me/' + url.replace(/\D/g, '');
+
+    if (!url) {
+      el.addEventListener('click', e => e.preventDefault());
+      return;
+    }
+    if (el.tagName === 'A') {
+      el.setAttribute('href', url);
+      // mailto: precisa abrir no próprio contexto para o cliente de e-mail assumir
+      if (!url.startsWith('mailto:')) {
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+    } else {
+      el.addEventListener('click', () => {
+        url.startsWith('mailto:') ? (window.location.href = url) : leave(url);
+      });
+    }
+  });
+})();
+
+/* ─── Consentimento de cookies (LGPD) ──────────────────────────────────────
+   Portão de consentimento. HOJE A PÁGINA NÃO CARREGA NENHUM RASTREADOR — o
+   banner nasce inerte de propósito. Quando GA4 e Clarity entrarem, registre
+   o carregador aqui em vez de colar a tag no HTML:
+
+       deloadConsent.onGrant(() => { ...injeta o script do GA4... });
+
+   Assim o script só existe depois do aceite, que é o que a LGPD exige.     */
+(function () {
+  /* ►► LIGUE ISTO JUNTO COM O GA4/CLARITY (bloco 3). ◄◄
+     Com false, o banner nunca aparece e o link "Preferências de cookies" some
+     do rodapé — porque não há rastreador nenhum na página e pedir permissão
+     para algo que não acontece só atrapalha o visitante. A API abaixo continua
+     existindo, então nada quebra. */
+  const ANALYTICS_ATIVO = false;
+
+  const KEY = 'deload:consent';
+  const VERSION = 1; // suba este número para reperguntar quando a política mudar
+  const bar = document.getElementById('cookieBar');
+  const prefsBtn = document.getElementById('cookiePrefs');
+  const pending = [];
+  let state = null;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (saved && saved.v === VERSION) state = saved.s;
+  } catch (e) { /* localStorage bloqueado: trata como sem decisão */ }
+
+  function persist(value) {
+    state = value;
+    try {
+      localStorage.setItem(KEY, JSON.stringify({ s: value, v: VERSION, t: Date.now() }));
+    } catch (e) { /* segue sem persistir */ }
+  }
+
+  function runPending() {
+    while (pending.length) {
+      try { pending.shift()(); } catch (e) { /* um carregador quebrado não derruba os outros */ }
+    }
+  }
+
+  window.deloadConsent = {
+    granted: () => state === 'granted',
+    /* Registra algo para rodar só com consentimento. Se já houver, roda agora. */
+    onGrant(fn) {
+      if (state === 'granted') { fn(); } else { pending.push(fn); }
+    },
+    set(value) {
+      persist(value);
+      if (bar) bar.hidden = true;
+      if (value === 'granted') runPending();
+    },
+    /* Reabre o banner — usado pelo link "Preferências de cookies" do rodapé */
+    reask() { if (bar) bar.hidden = false; }
+  };
+
+  /* Sem rastreador na página: nada a consentir. Some com o banner e com o
+     link de preferências, mas mantém window.deloadConsent publicado. */
+  if (!ANALYTICS_ATIVO) {
+    if (bar) bar.remove();
+    if (prefsBtn && prefsBtn.parentElement) prefsBtn.parentElement.remove();
+    return;
+  }
+
+  if (prefsBtn) prefsBtn.addEventListener('click', () => window.deloadConsent.reask());
+
+  if (!bar) return;
+  document.getElementById('cookieAllow').addEventListener('click', () => window.deloadConsent.set('granted'));
+  document.getElementById('cookieDeny').addEventListener('click', () => window.deloadConsent.set('denied'));
+  bar.addEventListener('keydown', e => { if (e.key === 'Escape') bar.hidden = true; });
+
+  if (state === null) bar.hidden = false;
+  else if (state === 'granted') runPending();
 })();
 
 /* ─── Dynamic year ─── */

@@ -1,0 +1,11 @@
+# backups locais de trabalho — não devem ir para o site publicado
+_backup/
+
+# lixo de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# dependências, caso um build entre no futuro
+node_modules/
+.netlify/

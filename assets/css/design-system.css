@@ -41,6 +41,8 @@ RESET & BASE
 ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* nav fixa: garante que a seção não abra por baixo dela ao chegar por #hash */
+section[id] { scroll-margin-top: 84px; }
 body {
 background: var(--bg-0);
 color: var(--text);
@@ -73,6 +75,26 @@ line-height: 1.15;
 h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 400; }
 p { color: var(--text); font-weight: 400; font-size: 0.84rem; line-height: 1.72; }
 a { color: var(--text); text-decoration: none; }
+/* ============================================================
+ÍCONES — sprite SVG local (<symbol> no topo do body)
+Substitui o lucide via CDN: sem request externo, sem ponto único de
+falha e sem CLS, porque o tamanho já vale no parse do CSS.
+Os traços ficam aqui (e não no <symbol>) para que regras como
+.vs-col-them .vs-ico svg { stroke-width: 1.5 } continuem vencendo.
+Regra de baixa especificidade (0,1,0) e declarada cedo: qualquer
+regra posterior de tamanho (.pricing-check, .footer-lock, X svg) manda.
+============================================================ */
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon {
+width: 16px;
+height: 16px;
+flex-shrink: 0;
+fill: none;
+stroke: currentColor;
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
+}
 .text-gradient {
 background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 50%, #8CC8F5 100%);
 -webkit-background-clip: text;
@@ -789,6 +811,23 @@ color: var(--muted);
 line-height: 1.65;
 max-width: 88%;
 }
+/* Segunda dobra: as capturas do app são de página inteira e têm proporções
+   diferentes entre si (de 0.63 a 0.99), então o quadro usa contain para não
+   cortar nenhuma. O quadro é retrato (4/5) porque três das cinco telas são
+   verticais. O fundo é o mesmo canvas dos screenshots (#0A1720), o que faz
+   as barras do contain sumirem visualmente. */
+#recursos .sc-img-wrap {
+aspect-ratio: 4 / 5;
+background: #0A1720;
+}
+#recursos .sc-img-wrap img {
+object-fit: contain;
+object-position: center;
+}
+#recursos .sc-img-wrap::after {
+background: linear-gradient(to bottom, transparent 74%, rgba(24,28,32,0.72));
+}
+#recursos .showcase-card:hover .sc-img-wrap img { transform: scale(1.015); }
 .sc-num {
 position: absolute;
 right: 16px; bottom: 8px;
@@ -1162,175 +1201,7 @@ inset: 0;
 background: radial-gradient(ellipse 40% 50% at 70% 40%, rgba(59,151,227,0.06), transparent);
 pointer-events: none;
 }
-.app-inner {
-position: relative;
-display: grid;
-grid-template-columns: 1fr 340px;
-gap: 64px;
-align-items: center;
-max-width: 980px;
-margin: 0 auto;
-z-index: 1;
-}
-.app-features {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 28px;
-}
-.app-feature { display: flex; gap: 14px; align-items: flex-start; }
-.app-feature-icon {
-width: 40px; height: 40px;
-flex-shrink: 0;
-border-radius: 10px;
-display: flex; align-items: center; justify-content: center;
-background: rgba(59,151,227,0.08);
-border: 1px solid rgba(59,151,227,0.2);
-color: var(--accent-light);
-}
-.app-feature-icon svg { width: 17px; height: 17px; }
-.app-feature h3 {
-font-size: 0.92rem;
-font-weight: 500;
-margin-bottom: 4px;
-}
-.app-feature p {
-font-size: 0.76rem;
-color: var(--muted);
-line-height: 1.6;
-}
-/* Phone mockup (estilizado, não é screenshot real) */
-.phone-wrap { position: relative; display: flex; justify-content: center; }
-.phone-wrap::before {
-content: '';
-position: absolute;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%);
-width: 380px; height: 380px;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(59,151,227,0.14), transparent 70%);
-filter: blur(40px);
-pointer-events: none;
-}
-.phone {
-position: relative;
-width: 270px;
-border-radius: 40px;
-padding: 10px;
-background: linear-gradient(160deg, #22282E, #14171A);
-border: 1px solid rgba(255,255,255,0.1);
-box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(59,151,227,0.1);
-}
-.phone::before {
-content: '';
-position: absolute;
-top: 20px; left: 50%;
-transform: translateX(-50%);
-width: 80px; height: 18px;
-border-radius: 999px;
-background: #0E1113;
-z-index: 5;
-}
-.phone-screen {
-border-radius: 30px;
-background: var(--bg-0);
-overflow: hidden;
-padding: 48px 14px 18px;
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
-.ph-header {
-display: flex;
-align-items: center;
-gap: 8px;
-padding: 0 2px 2px;
-}
-.ph-avatar {
-width: 22px; height: 22px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--accent-dark), var(--accent-light));
-}
-.ph-greet {
-font-family: var(--font-head);
-font-size: 0.76rem;
-font-weight: 500;
-color: var(--heading);
-flex: 1;
-}
-.ph-header svg { width: 14px; height: 14px; color: var(--muted); }
-.ph-card {
-background: rgba(255,255,255,0.03);
-border: 1px solid rgba(59,151,227,0.1);
-border-radius: 12px;
-padding: 10px 12px;
-}
-.ph-card-title {
-font-size: 0.58rem;
-font-weight: 500;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(--muted);
-margin-bottom: 6px;
-}
-.ph-kcal { font-size: 0.72rem; color: var(--text); margin-bottom: 6px; }
-.ph-kcal b { color: var(--accent-light); font-weight: 600; }
-.ph-bar {
-height: 5px;
-border-radius: 3px;
-background: rgba(59,151,227,0.15);
-overflow: hidden;
-}
-.ph-bar-fill {
-height: 100%;
-border-radius: 3px;
-background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
-}
-.ph-row {
-display: flex;
-align-items: center;
-gap: 7px;
-font-size: 0.66rem;
-color: var(--text);
-padding: 4px 0;
-}
-.ph-row svg { width: 12px; height: 12px; color: var(--accent-light); }
-.ph-row span:last-child { margin-left: auto; color: var(--muted); font-size: 0.58rem; }
-.ph-row-pending { color: var(--muted); }
-.ph-dot {
-width: 10px; height: 10px;
-border-radius: 50%;
-border: 1.5px solid rgba(255,255,255,0.25);
-margin: 0 1px;
-}
-.ph-sub { font-size: 0.64rem; color: var(--muted); margin-bottom: 8px; }
-.ph-chip {
-display: inline-block;
-font-size: 0.6rem;
-font-weight: 500;
-color: #fff;
-background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-border-radius: 999px;
-padding: 4px 12px;
-box-shadow: 0 0 12px rgba(59,151,227,0.3);
-}
-.ph-meta {
-display: flex;
-justify-content: space-between;
-gap: 6px;
-padding: 2px 2px 0;
-}
-.ph-meta span {
-display: inline-flex;
-align-items: center;
-gap: 5px;
-font-size: 0.6rem;
-color: var(--muted);
-background: rgba(255,255,255,0.03);
-border: 1px solid rgba(255,255,255,0.07);
-border-radius: 999px;
-padding: 4px 9px;
-}
-.ph-meta svg { width: 10px; height: 10px; color: var(--accent-light); }
+/* O carrossel de telas do app reaproveita .ciclo-* / .showcase-* da segunda dobra */
 .app-close { text-align: center; margin-top: 72px; position: relative; z-index: 1; }
 .app-quote {
 font-family: var(--font-head);
@@ -1361,6 +1232,15 @@ transition: all 0.25s;
 }
 .store-badge:hover { border-color: var(--border-m); background: rgba(59,151,227,0.06); }
 .store-badge svg { width: 18px; height: 18px; color: var(--heading); }
+/* marcas oficiais recortadas com canal alfa — a pílula continua sendo o
+   fundo, então nada de retângulo branco em volta */
+.store-mark {
+width: 18px;
+height: 18px;
+object-fit: contain;
+flex-shrink: 0;
+display: block;
+}
 .store-badge span { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
 .store-badge small { font-size: 0.56rem; color: var(--muted); }
 .store-badge b { font-size: 0.78rem; font-weight: 500; color: var(--heading); font-family: var(--font-head); }
@@ -1810,6 +1690,22 @@ transition: color 0.2s;
 }
 .footer-links a:hover { color: var(--text); }
 .footer-links svg { width: 13px; height: 13px; }
+/* "Preferências de cookies" é <button> (reabre o banner), mas veste-se de link */
+.footer-link-btn {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+padding: 0;
+background: none;
+border: none;
+font-family: inherit;
+font-size: 0.8rem;
+color: rgba(255,255,255,0.35);
+text-align: left;
+cursor: pointer;
+transition: color 0.2s;
+}
+.footer-link-btn:hover { color: var(--text); }
 .footer-bottom {
 display: flex;
 align-items: center;
@@ -1829,7 +1725,88 @@ color: rgba(255,255,255,0.25);
 .footer-lock { width: 12px; height: 12px; color: var(--accent); opacity: 0.7; }
 .store-badges-sm .store-badge { padding: 6px 12px; border-radius: 9px; gap: 7px; }
 .store-badges-sm .store-badge svg { width: 13px; height: 13px; }
+.store-badges-sm .store-mark { width: 13px; height: 13px; }
 .store-badges-sm .store-badge b { font-size: 0.68rem; }
+.footer-bottom-left { display: flex; flex-direction: column; gap: 5px; }
+/* razão social e CNPJ — rodapé institucional mínimo */
+.footer-entity {
+font-size: 0.64rem;
+color: rgba(255,255,255,0.20);
+letter-spacing: 0.01em;
+}
+/* ============================================================
+CONSENTIMENTO DE COOKIES (LGPD)
+Fixo na viewport: fora do fluxo, não empurra nada e não gera CLS.
+Aceitar e recusar têm a mesma área — recusar não pode ser mais
+difícil que aceitar. A lógica está em interactions.js (deloadConsent).
+============================================================ */
+.cookie-bar {
+position: fixed;
+left: 0; right: 0; bottom: 0;
+z-index: 200;
+padding: 14px 24px;
+padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+background: rgba(18,23,28,0.95);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border-top: 1px solid var(--border-s);
+/* Sem fill-mode de propósito: o estado base já é a posição final. Com
+   'both' o banner fica preso em translateY(100%) — fora da tela — se a
+   animação não chegar a rodar, e aí não há como consentir. */
+animation: cookie-in 0.45s var(--ease-out);
+}
+.cookie-bar[hidden] { display: none; }
+@keyframes cookie-in { from { transform: translateY(100%); } }
+.cookie-bar-inner {
+max-width: 1120px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+gap: 28px;
+}
+.cookie-bar-title {
+font-family: var(--font-head);
+font-size: 0.78rem;
+font-weight: 500;
+color: var(--heading);
+margin-bottom: 3px;
+}
+.cookie-bar-text p { font-size: 0.72rem; line-height: 1.6; color: var(--muted); }
+.cookie-bar-text a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 2px; }
+.cookie-bar-actions { display: flex; gap: 10px; margin-left: auto; flex-shrink: 0; }
+.cookie-btn {
+min-width: 116px;
+min-height: 44px;
+padding: 0 20px;
+border-radius: 10px;
+font-family: var(--font-head);
+font-size: 0.76rem;
+font-weight: 500;
+cursor: pointer;
+transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.cookie-btn-ghost {
+background: transparent;
+border: 1px solid rgba(255,255,255,0.18);
+color: var(--text);
+}
+.cookie-btn-ghost:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+.cookie-btn-solid {
+background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+border: 1px solid transparent;
+color: #fff;
+box-shadow: var(--glow-sm);
+}
+.cookie-btn-solid:hover { box-shadow: var(--glow-md); }
+@media (prefers-reduced-motion: reduce) {
+.cookie-bar { animation: none; }
+}
+@media (max-width: 767px) {
+.cookie-bar { padding: 16px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+.cookie-bar-inner { flex-direction: column; align-items: stretch; gap: 14px; }
+.cookie-bar-actions { margin-left: 0; }
+.cookie-btn { flex: 1; min-width: 0; }
+}
 /* ============================================================
 SCROLL ANIMATIONS
 ============================================================ */
@@ -1897,8 +1874,6 @@ nav { padding: 0 24px; }
 .showcase-card { flex-basis: clamp(280px, 62vw, 420px); }
 .bento-grid { grid-template-columns: repeat(2, 1fr); }
 .bento-span-2 { grid-column: span 2; }
-.app-inner { grid-template-columns: 1fr; gap: 56px; }
-.app-features { max-width: 640px; margin: 0 auto; }
 .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
 .pricing-card.featured { order: -1; }
 .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -1921,7 +1896,6 @@ nav { padding: 0 16px; }
 .ciclo-cta { width: 100%; justify-content: center; }
 .bento-grid { grid-template-columns: 1fr; }
 .bento-span-2 { grid-column: auto; }
-.app-features { grid-template-columns: 1fr; }
 .vs-table thead { display: none; }
 .vs-table, .vs-table tbody, .vs-table tr, .vs-table td { display: block; width: 100%; }
 .vs-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }

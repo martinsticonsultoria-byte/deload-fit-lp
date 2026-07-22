@@ -1,0 +1,47 @@
+# Sexta dobra — preços. O cliente só edita "mensal" e "anual" de cada plano;
+# o texto "Cobrado R$X uma vez no ano · você economiza R$Y" é CALCULADO no
+# build a partir desses dois números (economia = (mensal - anual) × 12),
+# então nunca fica com um preço novo e um texto de economia antigo.
+label: "Planos"
+title: "Comece hoje. "
+title_gradient: "Cresça no seu ritmo."
+subtitle: "7 dias grátis em qualquer plano, com acesso a tudo. Sem cartão."
+toggle_mensal: "Mensal"
+toggle_anual: "Anual"
+toggle_badge: "Economize 25%"
+note: "Paciente ativo é quem tem plano vigente com você — inativo não conta na faixa. Passou do limite? Avisamos antes, nada trava no meio do atendimento e nada é cobrado sem você aprovar."
+plans:
+  - tier: "Essencial"
+    tagline: "Para quem está montando a carteira"
+    mensal: 89.90
+    anual: 66.90
+    limit_prefix: "Até"
+    limit_strong: "25 pacientes ativos"
+    features:
+      - text: "Todos os recursos, sem exceção"
+      - text: "App do paciente incluso"
+    cta: "Começar grátis"
+    featured: false
+  - tier: "Profissional"
+    tagline: "Para a carteira cheia do consultório"
+    mensal: 119.90
+    anual: 89.90
+    limit_prefix: "Até"
+    limit_strong: "50 pacientes ativos"
+    features:
+      - text: "Todos os recursos, sem exceção"
+      - text: "App do paciente incluso"
+    cta: "Começar grátis"
+    featured: true
+    badge: "Mais escolhido"
+  - tier: "Ilimitado"
+    tagline: "Para quem não quer pensar em limite"
+    mensal: 169.90
+    anual: 126.90
+    limit_prefix: ""
+    limit_strong: "Pacientes ativos sem limite"
+    features:
+      - text: "Todos os recursos, sem exceção"
+      - text: "App do paciente incluso"
+    cta: "Começar grátis"
+    featured: false

@@ -1,0 +1,268 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Cada edição salva vira um commit e dispara um novo build do Netlify —
+# o site atualiza sozinho, geralmente em menos de um minuto.
+publish_mode: simple
+locale: "pt"
+site_url: "https://www.deloadfit.app/"
+display_url: "https://www.deloadfit.app/"
+
+# Imagens novas entram aqui dentro de src/assets, então o build do Eleventy
+# já leva elas junto sem configuração extra.
+media_folder: "src/assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  - name: "paginas"
+    label: "Página"
+    files:
+
+      - file: "src/_data/hero.yml"
+        label: "1 · Topo da página"
+        name: "hero"
+        fields:
+          - { label: "Frase pequena acima do título", name: "eyebrow", widget: "string" }
+          - { label: "Título principal — linha 1", name: "title_line1", widget: "string" }
+          - { label: "Título principal — linha 2 (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto abaixo do título", name: "subtitle", widget: "text" }
+          - { label: "Botão principal", name: "cta_primary", widget: "string" }
+          - { label: "Botão secundário (contorno)", name: "cta_ghost", widget: "string" }
+          - { label: "Texto pequeno abaixo dos botões", name: "microcopy", widget: "string" }
+
+      - file: "src/_data/ciclo.yml"
+        label: "2 · O ciclo do atendimento"
+        name: "ciclo"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto de apoio (linha 1)", name: "lead", widget: "text" }
+          - { label: "Texto de apoio (linha 2)", name: "lead_accent", widget: "text" }
+          - { label: "Botão", name: "cta", widget: "string" }
+          - label: "Telas do carrossel"
+            name: "cards"
+            widget: "list"
+            min: 3
+            summary: "{{fields.title}}"
+            hint: "Pode adicionar ou remover telas à vontade — o carrossel se ajusta sozinho, sem precisar mexer em nada além desta lista."
+            fields:
+              - { label: "Selo pequeno (ex.: \"Em um clique\")", name: "tag", widget: "string" }
+              - { label: "Imagem da tela", name: "image", widget: "image" }
+              - { label: "Descrição da imagem (acessibilidade e SEO)", name: "alt", widget: "string" }
+              - { label: "Título do card", name: "title", widget: "string" }
+              - { label: "Texto do card", name: "text", widget: "text" }
+
+      - file: "src/_data/contraste.yml"
+        label: "3 · Comparativo Antes / deLoad.fit"
+        name: "contraste"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — linha 1", name: "title_line1", widget: "string" }
+          - { label: "Título — linha 2, início", name: "title_line2_prefix", widget: "string" }
+          - { label: "Título — linha 2, final (fica azul)", name: "title_line2_gradient", widget: "string" }
+          - { label: "Frase de apoio — antes do trecho em negrito", name: "setup_pre", widget: "string" }
+          - { label: "Frase de apoio — trecho em negrito", name: "setup_strong", widget: "string" }
+          - { label: "Frase de apoio — depois do trecho em negrito", name: "setup_post", widget: "string" }
+          - { label: "Nome da coluna esquerda", name: "col_before_tag", widget: "string" }
+          - { label: "Nome da coluna direita", name: "col_after_tag", widget: "string" }
+          - label: "Coluna esquerda — linhas"
+            name: "before"
+            widget: "list"
+            min: 1
+            max: 6
+            summary: "{{fields.a}}"
+            fields: &vsRowFields
+              - label: "Ícone"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Balão de mensagem", value: "message-square" }
+                  - { label: "Tabela", value: "table" }
+                  - { label: "Arquivo com X", value: "file-x" }
+                  - { label: "Imagem quebrada", value: "image-off" }
+                  - { label: "Seta caindo", value: "trending-down" }
+                  - { label: "Calendário com X", value: "calendar-x" }
+                  - { label: "Celular", value: "smartphone" }
+                  - { label: "Haltere", value: "dumbbell" }
+                  - { label: "Gráfico de linha", value: "line-chart" }
+                  - { label: "Camadas", value: "layers" }
+                  - { label: "Sino", value: "bell-ring" }
+                  - { label: "Calendário com check", value: "calendar-check" }
+              - { label: "Situação (parte forte)", name: "a", widget: "string" }
+              - { label: "Consequência", name: "b", widget: "string" }
+          - label: "Coluna direita — linhas"
+            name: "after"
+            widget: "list"
+            min: 1
+            max: 6
+            summary: "{{fields.a}}"
+            fields: *vsRowFields
+          - { label: "Frase de fechamento — forte", name: "close_strong", widget: "string" }
+          - { label: "Frase de fechamento — apoio", name: "close_sub", widget: "text" }
+          - { label: "Botão", name: "cta", widget: "string" }
+
+      - file: "src/_data/diferenciais.yml"
+        label: "4 · Inteligência clínica"
+        name: "diferenciais"
+        fields:
+          - { label: "Número pequeno (ex.: \"02\")", name: "eyebrow_num", widget: "string" }
+          - { label: "Rótulo pequeno ao lado do número", name: "eyebrow_kicker", widget: "string" }
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (esmaecido)", name: "title_dim", widget: "string" }
+          - { label: "Texto de apoio", name: "lead", widget: "text" }
+          - { label: "Botão", name: "cta", widget: "string" }
+          - label: "Card 1 — Projeção de perda de peso"
+            name: "card_perda"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Texto", name: "sub", widget: "text" }
+              - { label: "Valor em kg (só o número, ex.: 6.2)", name: "valor_kg", widget: "number", value_type: "float" }
+              - { label: "Legenda — linha tracejada", name: "legenda_previsto", widget: "string" }
+              - { label: "Legenda — linha cheia", name: "legenda_real", widget: "string" }
+          - label: "Card 2 — Perfil clínico completo"
+            name: "card_perfil"
+            widget: "object"
+            hint: "Os 6 eixos do gráfico (Dieta, Treino, Sono, Pressão, Exames, Medidas) são fixos no desenho — não aparecem aqui de propósito."
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Texto", name: "sub", widget: "text" }
+              - { label: "Legenda A", name: "legenda_a", widget: "string" }
+              - { label: "Legenda B", name: "legenda_b", widget: "string" }
+          - label: "Card 3 — Adesão medida, não presumida"
+            name: "card_adesao"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Texto", name: "sub", widget: "text" }
+              - { label: "Percentual (só o número)", name: "valor_percentual", widget: "number", value_type: "int" }
+          - label: "Card 4 — Exames em gráfico"
+            name: "card_exames"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Texto", name: "sub", widget: "text" }
+              - { label: "Valor do exame (só o número)", name: "valor_ldl", widget: "number", value_type: "int" }
+              - { label: "Unidade / legenda", name: "unidade", widget: "string" }
+          - label: "Card 5 — Onde o plano está cedendo"
+            name: "card_barras"
+            widget: "object"
+            fields:
+              - { label: "Título do gráfico de barras", name: "titulo_grafico", widget: "string" }
+              - { label: "Período", name: "periodo", widget: "string" }
+              - { label: "Título do card", name: "title", widget: "string" }
+              - { label: "Texto do card", name: "sub", widget: "text" }
+              - label: "Barras"
+                name: "itens"
+                widget: "list"
+                min: 3
+                max: 5
+                summary: "{{fields.nome}} — {{fields.percentual}}%"
+                fields:
+                  - { label: "Nome", name: "nome", widget: "string" }
+                  - { label: "Percentual (0 a 100)", name: "percentual", widget: "number", value_type: "int", min: 0, max: 100 }
+
+      - file: "src/_data/app.yml"
+        label: "5 · O app do paciente"
+        name: "app"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto de apoio (linha 1)", name: "lead", widget: "text" }
+          - { label: "Texto de apoio (linha 2)", name: "lead_accent", widget: "text" }
+          - { label: "Botão", name: "cta", widget: "string" }
+          - label: "Telas do carrossel"
+            name: "cards"
+            widget: "list"
+            min: 3
+            summary: "{{fields.title}}"
+            hint: "Pode adicionar ou remover telas à vontade — o carrossel se ajusta sozinho, sem precisar mexer em nada além desta lista."
+            fields:
+              - { label: "Categoria (ex.: \"Treino\", \"Saúde\")", name: "category", widget: "string" }
+              - { label: "Selo pequeno (ex.: \"Abre e treina\")", name: "tag", widget: "string" }
+              - { label: "Imagem da tela", name: "image", widget: "image" }
+              - { label: "Descrição da imagem (acessibilidade e SEO)", name: "alt", widget: "string" }
+              - { label: "Título do card", name: "title", widget: "string" }
+              - { label: "Texto do card", name: "text", widget: "text" }
+          - { label: "Frase de fechamento — início", name: "quote_pre", widget: "string" }
+          - { label: "Frase de fechamento — final (fica azul)", name: "quote_gradient", widget: "string" }
+
+      - file: "src/_data/garantia.yml"
+        label: "6 · Garantia"
+        name: "garantia"
+        fields:
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto", name: "text", widget: "text" }
+
+      - file: "src/_data/planos.yml"
+        label: "7 · Planos e preços"
+        name: "planos"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto abaixo do título", name: "subtitle", widget: "string" }
+          - { label: "Rótulo \"Mensal\"", name: "toggle_mensal", widget: "string" }
+          - { label: "Rótulo \"Anual\"", name: "toggle_anual", widget: "string" }
+          - { label: "Selo de desconto (ex.: \"Economize 25%\")", name: "toggle_badge", widget: "string" }
+          - { label: "Nota de rodapé dos planos", name: "note", widget: "text" }
+          - label: "Planos"
+            name: "plans"
+            widget: "list"
+            min: 1
+            summary: "{{fields.tier}} — R$ {{fields.anual}}/mês"
+            hint: "O texto \"Cobrado R$X uma vez no ano · você economiza R$Y\" é calculado sozinho a partir do mensal e do anual — não precisa (e não dá para) editar esse texto direto."
+            fields:
+              - { label: "Nome do plano", name: "tier", widget: "string" }
+              - { label: "Frase abaixo do nome", name: "tagline", widget: "string" }
+              - { label: "Preço mensal (sem desconto)", name: "mensal", widget: "number", value_type: "float" }
+              - { label: "Preço anual (o que aparece em destaque)", name: "anual", widget: "number", value_type: "float" }
+              - { label: "Texto antes do limite (ex.: \"Até\") — deixe em branco se não usar", name: "limit_prefix", widget: "string", required: false }
+              - { label: "Limite de pacientes (texto em negrito)", name: "limit_strong", widget: "string" }
+              - label: "Outros recursos listados"
+                name: "features"
+                widget: "list"
+                summary: "{{fields.text}}"
+                fields:
+                  - { label: "Texto", name: "text", widget: "string" }
+              - { label: "Texto do botão", name: "cta", widget: "string" }
+              - { label: "É o plano em destaque?", name: "featured", widget: "boolean", default: false }
+              - { label: "Selo (ex.: \"Mais escolhido\") — só no plano em destaque", name: "badge", widget: "string", required: false }
+
+      - file: "src/_data/duvidas.yml"
+        label: "8 · Perguntas frequentes"
+        name: "duvidas"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — início", name: "title", widget: "string" }
+          - { label: "Título — final (fica azul)", name: "title_gradient", widget: "string" }
+          - label: "Perguntas"
+            name: "items"
+            widget: "list"
+            min: 1
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "Pergunta", name: "question", widget: "string" }
+              - { label: "Resposta", name: "answer", widget: "text" }
+
+      - file: "src/_data/ctafinal.yml"
+        label: "9 · Chamada final"
+        name: "ctafinal"
+        fields:
+          - { label: "Rótulo pequeno acima do título", name: "label", widget: "string" }
+          - { label: "Título — linha 1", name: "title_line1", widget: "string" }
+          - { label: "Título — linha 2 (fica azul)", name: "title_gradient", widget: "string" }
+          - { label: "Texto abaixo do título", name: "sub", widget: "string" }
+          - { label: "Botão principal", name: "cta_primary", widget: "string" }
+          - { label: "Botão secundário", name: "cta_ghost", widget: "string" }
+
+      - file: "src/_data/footer.yml"
+        label: "10 · Rodapé"
+        name: "footer"
+        fields:
+          - { label: "Texto de descrição da marca", name: "brand_text", widget: "text" }
+          - { label: "Texto de copyright (depois do ano)", name: "copy_text", widget: "string" }

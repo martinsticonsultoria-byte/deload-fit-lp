@@ -1,7 +1,9 @@
-# Site estático: não há build. O index.html na raiz é o que vai ao ar.
+# O Eleventy monta o HTML final a partir de src/index.njk + src/_data/*.yml
+# (o que o painel /admin edita) e publica em _site/. Todo push na main
+# reconstrói o site sozinho.
 [build]
-  publish = "."
-  command = ""
+  publish = "_site"
+  command = "npm run build"
 
 # Imagens e fontes têm nome fixo e nunca mudam de conteúdo — cache longo.
 [[headers]]

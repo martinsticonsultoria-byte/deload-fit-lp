@@ -1,0 +1,21 @@
+# Sétima dobra — FAQ. A mesma lista alimenta o accordion visível e o
+# schema FAQPage (dado estruturado que o Google lê), então as duas nunca
+# ficam com pergunta/resposta diferentes uma da outra.
+label: "Dúvidas"
+title: "Perguntas que "
+title_gradient: "a gente sempre responde."
+items:
+  - question: "Como migro meus pacientes de outra plataforma?"
+    answer: "Aos poucos, e é melhor assim. Você entra pelos pacientes novos e pelos que estão renovando — cada um migra quando o plano dele vence, sem fim de semana perdido. Suas dietas e treinos você monta uma vez, salva como modelo e reutiliza para sempre."
+  - question: "O que conta como paciente ativo?"
+    answer: "Quem tem plano vigente com você. Venceu, saiu da conta."
+  - question: "E se eu passar do limite da minha faixa?"
+    answer: "Avisamos antes. Nada trava no meio de um atendimento e nada é cobrado sem você aprovar."
+  - question: "Meu paciente paga alguma coisa?"
+    answer: "Não. O app dele está incluso em qualquer plano."
+  - question: "Preciso de cartão para testar?"
+    answer: "Não. Sete dias com acesso completo, sem cadastro de pagamento."
+  - question: "Meus dados e os dos meus pacientes ficam seguros?"
+    answer: "Sim. Os dados são armazenados com criptografia e o tratamento segue a LGPD. Você é o responsável pelos dados dos seus pacientes e pode exportá-los ou excluí-los quando quiser."
+  - question: "O deLoad.fit funciona no celular, entre consultas?"
+    answer: "Sim. O painel do profissional é responsivo e funciona em qualquer navegador de celular, tablet ou computador — sem precisar instalar nada."

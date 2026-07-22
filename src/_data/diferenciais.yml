@@ -1,0 +1,53 @@
+# Quarta dobra — bento de inteligência clínica. Os 5 cards têm gráficos e
+# animações em SVG que continuam fixos no template (curva, radar, órbitas);
+# só os textos e os números que aparecem sobre eles são editáveis aqui.
+# Os eixos do radar (Dieta/Treino/Sono/Pressão/Exames/Medidas) também ficam
+# fixos, porque a posição de cada palavra é calculada para o desenho do
+# hexágono — mudar o texto ali sem mudar a posição desalinha o gráfico.
+eyebrow_num: "02"
+eyebrow_kicker: "Inteligência clínica"
+title: "Treino e dieta é o básico. "
+title_dim: "Aqui entra a parte clínica."
+lead: "Modelo do NIH para projetar perda de peso, exames com faixa de referência e adesão medida todo dia. O que era impressão vira evidência na consulta."
+cta: "Começar grátis"
+
+card_perda:
+  title: "Projeção de perda de peso"
+  sub: "Modelo de balanço energético do NIH: você mostra a curva esperada e acompanha o real contra o previsto."
+  valor_kg: 6.2
+  legenda_previsto: "Previsto (modelo)"
+  legenda_real: "Real (paciente)"
+
+card_perfil:
+  title: "Perfil clínico completo"
+  sub: "Dieta, treino, sono, pressão arterial, exames e antropometria no mesmo prontuário. Compare o ponto de partida com onde o paciente está hoje."
+  legenda_a: "Semana 1"
+  legenda_b: "Semana 12"
+
+card_adesao:
+  title: "Adesão medida, não presumida"
+  sub: "O app registra o que foi feito. Você sabe no dia em que a adesão cai."
+  valor_percentual: 74
+
+card_exames:
+  title: "Exames em gráfico"
+  sub: "Perfil lipídico, glicose, hematologia e função hepática com faixa de referência e alerta automático."
+  valor_ldl: 68
+  unidade: "LDL · mg/dL · dentro da faixa"
+
+card_barras:
+  title: "Onde o plano está cedendo"
+  sub: "Veja qual pilar sustenta o resultado e qual precisa de ajuste antes do retorno."
+  titulo_grafico: "Adesão por módulo"
+  periodo: "Últimos 30 dias"
+  itens:
+    - nome: "Treino"
+      percentual: 74
+    - nome: "Dieta"
+      percentual: 68
+    - nome: "Antropometria"
+      percentual: 61
+    - nome: "Exames"
+      percentual: 55
+    - nome: "Sono"
+      percentual: 47

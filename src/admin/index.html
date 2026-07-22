@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>deLoad.fit — Editor da página</title>
+<!-- Netlify Identity: cuida do login. Sem isto, /admin nunca autentica. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+<!-- Decap CMS — sucessor mantido do Netlify CMS (descontinuado). Versão
+     fixada de propósito: sem isto, uma atualização da ferramenta pode
+     mudar o comportamento do painel sem aviso. Cheque manualmente antes
+     de trocar o número. -->
+<script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
+<script>
+  // Sem convite pendente, manda para o login normal em vez de travar numa
+  // tela em branco — comportamento padrão do widget, explicitado aqui só
+  // para não depender de configuração externa ao repositório.
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+      }
+    });
+  }
+</script>
+</body>
+</html>

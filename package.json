@@ -1,0 +1,14 @@
+{
+  "name": "deload-fit-lp",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^5.2.1"
+  }
+}

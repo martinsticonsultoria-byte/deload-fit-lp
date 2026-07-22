@@ -6,6 +6,7 @@ _backup/
 Thumbs.db
 desktop.ini
 
-# dependências, caso um build entre no futuro
+# dependências e saída do build — o Netlify gera isto sozinho a cada deploy
 node_modules/
 .netlify/
+_site/

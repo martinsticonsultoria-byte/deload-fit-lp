@@ -642,5 +642,28 @@
 <!-- js -->
 <!-- interactions.js: hero WebGL aurora shader (recolorido), parallax de fundo, mobile nav -->
 <script src="assets/js/interactions.js?v=13" defer></script>
+<!-- Netlify Identity — só carrega o widget se o visitante chegou aqui com um
+     token de confirmação/convite/recuperação de senha na URL (o e-mail da
+     Netlify sempre redireciona para a raiz do site, nunca direto para
+     /admin/). Para qualquer outra visita, esta seção não faz nada e não
+     carrega script nenhum — zero custo de performance na página normal. -->
+<script>
+(function () {
+  if (!/(confirmation_token|invite_token|recovery_token|access_token)=/.test(location.hash)) return;
+  var s = document.createElement('script');
+  s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+  s.onload = function () {
+    if (!window.netlifyIdentity) return;
+    window.netlifyIdentity.on('init', function (user) {
+      if (!user) {
+        window.netlifyIdentity.on('login', function () {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  };
+  document.head.appendChild(s);
+})();
+</script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 eyebrow:
   texto: Para nutricionistas, personal trainers e médicos
   tamanho: "112"
-  negrito: true
-  italico: true
-  sublinhado: false
+  negrito: false
+  italico: false
+  sublinhado: true
 title_line1:
   texto: A prescrição que levava horas.
   tamanho: "100"

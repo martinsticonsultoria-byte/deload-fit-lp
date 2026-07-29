@@ -2,35 +2,134 @@
 # cards sozinho: dá para adicionar ou remover itens de "cards" livremente,
 # sem editar nada além desta lista. O rótulo "Passo 0X" é gerado a partir
 # da posição do card, não precisa (e não deve) ser digitado.
-label: "O ciclo do atendimento"
-title: "Todo o ciclo do atendimento,"
-title_gradient: "em um lugar."
-lead: "Prescreva, avalie, monitore e gerencie. Tudo em um mesmo fluxo!"
-lead_accent: "Cada registro do paciente alimenta o passo seguinte, e o que você monta uma vez vira modelo reutilizável"
-cta: "Começar grátis"
+# "tag" não tem campo de tamanho — é um selo pequeno de forma fixa.
+label:
+  texto: "O ciclo do atendimento"
+  negrito: false
+  italico: false
+  sublinhado: false
+title:
+  texto: "Todo o ciclo do atendimento,"
+  tamanho: "100"
+  negrito: false
+  italico: false
+  sublinhado: false
+title_gradient:
+  texto: "em um lugar."
+  tamanho: "100"
+  negrito: false
+  italico: false
+  sublinhado: false
+lead:
+  texto: "Prescreva, avalie, monitore e gerencie. Tudo em um mesmo fluxo!"
+  tamanho: "100"
+  negrito: false
+  italico: false
+  sublinhado: false
+lead_accent:
+  texto: "Cada registro do paciente alimenta o passo seguinte, e o que você monta uma vez vira modelo reutilizável"
+  tamanho: "100"
+  negrito: false
+  italico: false
+  sublinhado: false
+cta:
+  texto: "Começar grátis"
+  negrito: false
+  italico: false
+  sublinhado: false
 cards:
-  - tag: "Em um clique"
+  - tag:
+      texto: "Em um clique"
+      negrito: false
+      italico: false
+      sublinhado: false
     image: "assets/images/ciclo-1-dieta.jpg"
     alt: "Tela de plano alimentar do deLoad.fit com refeições por horário, macronutrientes calculados, biblioteca de alimentos e considerações clínicas"
-    title: "Prescrever dieta"
-    text: "Refeições por horário, macros fechando na meta do dia e ingestão hídrica, com biblioteca de alimentos e considerações clínicas. O que você monta uma vez vira modelo."
-  - tag: "Modelos prontos"
+    title:
+      texto: "Prescrever dieta"
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+    text:
+      texto: "Refeições por horário, macros fechando na meta do dia e ingestão hídrica, com biblioteca de alimentos e considerações clínicas. O que você monta uma vez vira modelo."
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+  - tag:
+      texto: "Modelos prontos"
+      negrito: false
+      italico: false
+      sublinhado: false
     image: "assets/images/ciclo-2-treino.jpg"
     alt: "Tela de prescrição de treinos do deLoad.fit com treinos A a D, séries, cargas, técnicas por exercício e biblioteca de exercícios"
-    title: "Prescrever treino"
-    text: "Treinos A a D com séries, cargas, intervalos e técnica por exercício. Monte do zero ou parta de um template e envie direto para o app do paciente."
-  - tag: "Quatro fórmulas"
+    title:
+      texto: "Prescrever treino"
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+    text:
+      texto: "Treinos A a D com séries, cargas, intervalos e técnica por exercício. Monte do zero ou parta de um template e envie direto para o app do paciente."
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+  - tag:
+      texto: "Quatro fórmulas"
+      negrito: false
+      italico: false
+      sublinhado: false
     image: "assets/images/ciclo-3-avaliar.jpg"
     alt: "Tela de avaliação do deLoad.fit com cálculo calórico por Harris-Benedict, Mifflin-St Jeor, Cunningham e Tinsley e projeção calórica até a meta"
-    title: "Avaliar"
-    text: "Harris-Benedict, Mifflin-St Jeor, Cunningham e Tinsley lado a lado. Escolha a fórmula, defina o objetivo e veja a projeção até a meta antes de prescrever."
-  - tag: "Alertas críticos"
+    title:
+      texto: "Avaliar"
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+    text:
+      texto: "Harris-Benedict, Mifflin-St Jeor, Cunningham e Tinsley lado a lado. Escolha a fórmula, defina o objetivo e veja a projeção até a meta antes de prescrever."
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+  - tag:
+      texto: "Alertas críticos"
+      negrito: false
+      italico: false
+      sublinhado: false
     image: "assets/images/ciclo-4-monitorar.jpg"
     alt: "Dashboard de exames do deLoad.fit com perfil lipídico, hematologia, metabolismo da glicose e função hepática e renal em série"
-    title: "Monitorar"
-    text: "Perfil lipídico, glicemia, função hepática e renal em série temporal, com faixa de referência e alerta no valor fora do intervalo. Resumo clínico pronto para a consulta."
-  - tag: "Cobrança automática"
+    title:
+      texto: "Monitorar"
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+    text:
+      texto: "Perfil lipídico, glicemia, função hepática e renal em série temporal, com faixa de referência e alerta no valor fora do intervalo. Resumo clínico pronto para a consulta."
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+  - tag:
+      texto: "Cobrança automática"
+      negrito: false
+      italico: false
+      sublinhado: false
     image: "assets/images/ciclo-5-gerir.jpg"
     alt: "Painel financeiro do deLoad.fit com receita do mês e do ano, ticket médio por paciente, planos ativos e próximos vencimentos"
-    title: "Gerir"
-    text: "Receita do mês, ticket médio por paciente, recebido versus pendente e os planos que vencem essa semana. A cobrança sai sozinha e o aviso chega aos dois."
+    title:
+      texto: "Gerir"
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false
+    text:
+      texto: "Receita do mês, ticket médio por paciente, recebido versus pendente e os planos que vencem essa semana. A cobrança sai sozinha e o aviso chega aos dois."
+      tamanho: "100"
+      negrito: false
+      italico: false
+      sublinhado: false

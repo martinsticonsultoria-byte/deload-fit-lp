@@ -1,53 +1,175 @@
 # Quarta dobra — bento de inteligência clínica. Os 5 cards têm gráficos e
 # animações em SVG que continuam fixos no template (curva, radar, órbitas);
-# só os textos e os números que aparecem sobre eles são editáveis aqui.
-# Os eixos do radar (Dieta/Treino/Sono/Pressão/Exames/Medidas) também ficam
-# fixos, porque a posição de cada palavra é calculada para o desenho do
-# hexágono — mudar o texto ali sem mudar a posição desalinha o gráfico.
-eyebrow_num: "02"
-eyebrow_kicker: "Inteligência clínica"
-title: "Treino e dieta é o básico. "
-title_dim: "Aqui entra a parte clínica."
-lead: "Modelo do NIH para projetar perda de peso, exames com faixa de referência e adesão medida todo dia. O que era impressão vira evidência na consulta."
-cta: "Começar grátis"
-
+# só os textos são editáveis aqui. Os números que alimentam os contadores
+# animados (valor_kg, valor_percentual, valor_ldl, itens[].percentual) ficam
+# como número puro, sem formatação — são lidos pelo JavaScript do contador,
+# não só exibidos como texto. Os eixos do radar (Dieta/Treino/Sono/Pressão/
+# Exames/Medidas) também ficam fixos: a posição de cada palavra é calculada
+# para o desenho do hexágono, mudar o texto ali sem mudar a posição desalinha.
+eyebrow_num:
+  texto: '02'
+  negrito: false
+  italico: false
+  sublinhado: false
+eyebrow_kicker:
+  texto: Inteligência clínica
+  negrito: false
+  italico: false
+  sublinhado: false
+title:
+  texto: 'Treino e dieta é o básico. '
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_dim:
+  texto: Aqui entra a parte clínica.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+lead:
+  texto: Modelo do NIH para projetar perda de peso, exames com faixa de referência e adesão medida todo dia. O que era impressão vira evidência na consulta.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+cta:
+  texto: Começar grátis
+  negrito: false
+  italico: false
+  sublinhado: false
 card_perda:
-  title: "Projeção de perda de peso"
-  sub: "Modelo de balanço energético do NIH: você mostra a curva esperada e acompanha o real contra o previsto."
+  title:
+    texto: Projeção de perda de peso
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  sub:
+    texto: 'Modelo de balanço energético do NIH: você mostra a curva esperada e acompanha o real contra o previsto.'
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
   valor_kg: 6.2
-  legenda_previsto: "Previsto (modelo)"
-  legenda_real: "Real (paciente)"
-
+  legenda_previsto:
+    texto: Previsto (modelo)
+    negrito: false
+    italico: false
+    sublinhado: false
+  legenda_real:
+    texto: Real (paciente)
+    negrito: false
+    italico: false
+    sublinhado: false
 card_perfil:
-  title: "Perfil clínico completo"
-  sub: "Dieta, treino, sono, pressão arterial, exames e antropometria no mesmo prontuário. Compare o ponto de partida com onde o paciente está hoje."
-  legenda_a: "Semana 1"
-  legenda_b: "Semana 12"
-
+  title:
+    texto: Perfil clínico completo
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  sub:
+    texto: Dieta, treino, sono, pressão arterial, exames e antropometria no mesmo prontuário. Compare o ponto de partida com onde o paciente está hoje.
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  legenda_a:
+    texto: Semana 1
+    negrito: false
+    italico: false
+    sublinhado: false
+  legenda_b:
+    texto: Semana 12
+    negrito: false
+    italico: false
+    sublinhado: false
 card_adesao:
-  title: "Adesão medida, não presumida"
-  sub: "O app registra o que foi feito. Você sabe no dia em que a adesão cai."
+  title:
+    texto: Adesão medida, não presumida
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  sub:
+    texto: O app registra o que foi feito. Você sabe no dia em que a adesão cai.
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
   valor_percentual: 74
-
 card_exames:
-  title: "Exames em gráfico"
-  sub: "Perfil lipídico, glicose, hematologia e função hepática com faixa de referência e alerta automático."
+  title:
+    texto: Exames em gráfico
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  sub:
+    texto: Perfil lipídico, glicose, hematologia e função hepática com faixa de referência e alerta automático.
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
   valor_ldl: 68
-  unidade: "LDL · mg/dL · dentro da faixa"
-
+  unidade:
+    texto: LDL · mg/dL · dentro da faixa
+    negrito: false
+    italico: false
+    sublinhado: false
 card_barras:
-  title: "Onde o plano está cedendo"
-  sub: "Veja qual pilar sustenta o resultado e qual precisa de ajuste antes do retorno."
-  titulo_grafico: "Adesão por módulo"
-  periodo: "Últimos 30 dias"
+  titulo_grafico:
+    texto: Adesão por módulo
+    negrito: false
+    italico: false
+    sublinhado: false
+  periodo:
+    texto: Últimos 30 dias
+    negrito: false
+    italico: false
+    sublinhado: false
+  title:
+    texto: Onde o plano está cedendo
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
+  sub:
+    texto: Veja qual pilar sustenta o resultado e qual precisa de ajuste antes do retorno.
+    tamanho: '100'
+    negrito: false
+    italico: false
+    sublinhado: false
   itens:
-    - nome: "Treino"
+    - nome:
+        texto: Treino
+        negrito: false
+        italico: false
+        sublinhado: false
       percentual: 74
-    - nome: "Dieta"
+    - nome:
+        texto: Dieta
+        negrito: false
+        italico: false
+        sublinhado: false
       percentual: 68
-    - nome: "Antropometria"
+    - nome:
+        texto: Antropometria
+        negrito: false
+        italico: false
+        sublinhado: false
       percentual: 61
-    - nome: "Exames"
+    - nome:
+        texto: Exames
+        negrito: false
+        italico: false
+        sublinhado: false
       percentual: 55
-    - nome: "Sono"
+    - nome:
+        texto: Sono
+        negrito: false
+        italico: false
+        sublinhado: false
       percentual: 47

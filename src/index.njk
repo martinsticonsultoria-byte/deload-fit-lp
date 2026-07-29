@@ -31,7 +31,10 @@
 <link rel="stylesheet" href="assets/css/design-system.css?v=14"/>
 <!-- Tamanho do texto (painel /admin → Aparência). Escala a raiz do documento
      — como quase todo font-size do CSS usa rem/clamp(), título, parágrafos
-     e botões crescem ou encolhem juntos, mantendo a proporção entre eles. -->
+     e botões crescem ou encolhem juntos, mantendo a proporção entre eles.
+     Cada campo de texto também tem seu PRÓPRIO tamanho individual (ver o
+     filtro "fmt" em .eleventy.js) — os dois efeitos se somam: esta variável
+     multiplica a base, o span por-campo ajusta a partir dali. -->
 <style>:root{font-size:{{ aparencia.tamanho_fonte }}%;}</style>
 <noscript><style>.reveal, .reveal-child, .vs-panel .vs-list li { opacity: 1; transform: none; }</style></noscript>
 </head>
@@ -128,14 +131,14 @@
 </div>
 </div>
 <div class="hero-content">
-<div class="hero-eyebrow hero-rise hero-rise-1"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg>{{ hero.eyebrow }}</div>
-<h1 class="hero-title">{{ hero.title_line1 }}<br/><span class="text-gradient">{{ hero.title_gradient }}</span></h1>
-<p class="hero-subtitle hero-rise hero-rise-3">{{ hero.subtitle }}</p>
+<div class="hero-eyebrow hero-rise hero-rise-1"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg>{{ hero.eyebrow | fmt | safe }}</div>
+<h1 class="hero-title">{{ hero.title_line1 | fmt | safe }}<br/><span class="text-gradient">{{ hero.title_gradient | fmt | safe }}</span></h1>
+<p class="hero-subtitle hero-rise hero-rise-3">{{ hero.subtitle | fmt | safe }}</p>
 <div class="hero-ctas hero-rise hero-rise-4">
-<button class="btn-hero-primary" data-cta="hero">{{ hero.cta_primary }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
-<button class="btn-hero-ghost" data-goto="#planos">{{ hero.cta_ghost }}</button>
+<button class="btn-hero-primary" data-cta="hero">{{ hero.cta_primary | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<button class="btn-hero-ghost" data-goto="#planos">{{ hero.cta_ghost | fmt | safe }}</button>
 </div>
-<div class="hero-microcopy hero-rise hero-rise-5"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>{{ hero.microcopy }}</div>
+<div class="hero-microcopy hero-rise hero-rise-5"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>{{ hero.microcopy | fmt | safe }}</div>
 </div>
 </section>
 {% set mqWords = ["Ingestão energética","Gasto calórico","Adesão","Antropometria","Volume de treino","Sono","Perda de peso estimada","Pressão arterial"] %}
@@ -163,11 +166,11 @@
 <div class="container">
 <div class="ciclo-inner">
 <div class="ciclo-left reveal">
-<span class="section-label">{{ ciclo.label }}</span>
-<h2>{{ ciclo.title }} <span class="text-gradient">{{ ciclo.title_gradient }}</span></h2>
-<p class="ciclo-lead">{{ ciclo.lead }}</p>
-<p class="ciclo-lead-accent">{{ ciclo.lead_accent }}</p>
-<button class="btn-hero-primary ciclo-cta" data-cta="ciclo">{{ ciclo.cta }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<span class="section-label">{{ ciclo.label | fmt | safe }}</span>
+<h2>{{ ciclo.title | fmt | safe }} <span class="text-gradient">{{ ciclo.title_gradient | fmt | safe }}</span></h2>
+<p class="ciclo-lead">{{ ciclo.lead | fmt | safe }}</p>
+<p class="ciclo-lead-accent">{{ ciclo.lead_accent | fmt | safe }}</p>
+<button class="btn-hero-primary ciclo-cta" data-cta="ciclo">{{ ciclo.cta | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
 <div class="ciclo-nav-row">
 <span class="ciclo-counter" id="cicloCounter">01 / {{ ciclo.cards.length|pad2 }}</span>
 <div class="ciclo-arrows">
@@ -180,11 +183,11 @@
 <div class="showcase-track" id="cicloTrack" tabindex="0" aria-label="Etapas do ciclo de atendimento">
 {% for card in ciclo.cards %}
 <article class="showcase-card reveal-child">
-<div class="sc-header"><div class="sc-live-dot"></div><span class="sc-step">Passo {{ loop.index|pad2 }}</span><span class="sc-tag">{{ card.tag }}</span></div>
+<div class="sc-header"><div class="sc-live-dot"></div><span class="sc-step">Passo {{ loop.index|pad2 }}</span><span class="sc-tag">{{ card.tag | fmt | safe }}</span></div>
 <div class="sc-img-wrap"><img src="{{ card.image }}" alt="{{ card.alt }}" loading="lazy"/></div>
 <div class="sc-body">
-<h3>{{ card.title }}</h3>
-<p>{{ card.text }}</p>
+<h3>{{ card.title | fmt | safe }}</h3>
+<p>{{ card.text | fmt | safe }}</p>
 </div>
 <div class="sc-num" aria-hidden="true">{{ loop.index|pad2 }}</div>
 </article>
@@ -200,21 +203,21 @@
 <div class="section-sep"></div>
 <div class="container">
 <div class="section-header reveal">
-<span class="section-label">{{ contraste.label }}</span>
-<h2>{{ contraste.title_line1 }}<br/>{{ contraste.title_line2_prefix }}<span class="text-gradient">{{ contraste.title_line2_gradient }}</span></h2>
+<span class="section-label">{{ contraste.label | fmt | safe }}</span>
+<h2>{{ contraste.title_line1 | fmt | safe }}<br/>{{ contraste.title_line2_prefix | fmt | safe }}<span class="text-gradient">{{ contraste.title_line2_gradient | fmt | safe }}</span></h2>
 </div>
 <div class="vs-setup reveal">
 <span class="vs-setup-rule" aria-hidden="true"></span>
-<p class="vs-setup-text">{{ contraste.setup_pre }}<strong>{{ contraste.setup_strong }}</strong>{{ contraste.setup_post }}</p>
+<p class="vs-setup-text">{{ contraste.setup_pre | fmt | safe }}<strong>{{ contraste.setup_strong | fmt | safe }}</strong>{{ contraste.setup_post | fmt | safe }}</p>
 </div>
 <div class="vs-panel reveal">
 <div class="vs-cols">
 <div class="vs-col vs-col-them">
 <div class="vs-col-inner">
-<div class="vs-col-head"><span class="vs-col-tag">{{ contraste.col_before_tag }}</span></div>
+<div class="vs-col-head"><span class="vs-col-tag">{{ contraste.col_before_tag | fmt | safe }}</span></div>
 <ul class="vs-list">
 {% for row in contraste.before %}
-<li><span class="vs-ico"><svg class="icon" aria-hidden="true"><use href="#i-{{ row.icon }}"/></svg></span><span class="vs-txt"><span class="vs-a">{{ row.a }}</span> <span class="vs-arrow">→</span> <span class="vs-b">{{ row.b }}</span></span></li>
+<li><span class="vs-ico"><svg class="icon" aria-hidden="true"><use href="#i-{{ row.icon }}"/></svg></span><span class="vs-txt"><span class="vs-a">{{ row.a | fmt | safe }}</span> <span class="vs-arrow">→</span> <span class="vs-b">{{ row.b | fmt | safe }}</span></span></li>
 {% endfor %}
 </ul>
 </div>
@@ -222,19 +225,19 @@
 <div class="vs-badge" aria-hidden="true"><span>vs</span></div>
 <div class="vs-col vs-col-you">
 <div class="vs-col-inner">
-<div class="vs-col-head vs-col-head-you"><span class="vs-col-tag">{{ contraste.col_after_tag }}</span></div>
+<div class="vs-col-head vs-col-head-you"><span class="vs-col-tag">{{ contraste.col_after_tag | fmt | safe }}</span></div>
 <ul class="vs-list">
 {% for row in contraste.after %}
-<li><span class="vs-ico"><svg class="icon" aria-hidden="true"><use href="#i-{{ row.icon }}"/></svg></span><span class="vs-txt"><span class="vs-a">{{ row.a }}</span> <span class="vs-arrow">→</span> <span class="vs-b">{{ row.b }}</span></span></li>
+<li><span class="vs-ico"><svg class="icon" aria-hidden="true"><use href="#i-{{ row.icon }}"/></svg></span><span class="vs-txt"><span class="vs-a">{{ row.a | fmt | safe }}</span> <span class="vs-arrow">→</span> <span class="vs-b">{{ row.b | fmt | safe }}</span></span></li>
 {% endfor %}
 </ul>
 </div>
 </div>
 </div>
 <div class="vs-close">
-<p class="vs-close-strong">{{ contraste.close_strong }}</p>
-<p class="vs-close-sub">{{ contraste.close_sub }}</p>
-<button class="btn-hero-primary" data-cta="contraste">{{ contraste.cta }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<p class="vs-close-strong">{{ contraste.close_strong | fmt | safe }}</p>
+<p class="vs-close-sub">{{ contraste.close_sub | fmt | safe }}</p>
+<button class="btn-hero-primary" data-cta="contraste">{{ contraste.cta | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
 </div>
 </div>
 </div>
@@ -246,11 +249,11 @@
 <div class="intel-panel reveal">
 <div class="intel-head">
 <div class="intel-head-copy">
-<div class="intel-eyebrow"><span class="intel-num">{{ diferenciais.eyebrow_num }}</span><span class="intel-kicker">{{ diferenciais.eyebrow_kicker }}</span></div>
-<h2 class="intel-title">{{ diferenciais.title }}<span class="intel-title-dim">{{ diferenciais.title_dim }}</span></h2>
-<p class="intel-lead">{{ diferenciais.lead }}</p>
+<div class="intel-eyebrow"><span class="intel-num">{{ diferenciais.eyebrow_num | fmt | safe }}</span><span class="intel-kicker">{{ diferenciais.eyebrow_kicker | fmt | safe }}</span></div>
+<h2 class="intel-title">{{ diferenciais.title | fmt | safe }}<span class="intel-title-dim">{{ diferenciais.title_dim | fmt | safe }}</span></h2>
+<p class="intel-lead">{{ diferenciais.lead | fmt | safe }}</p>
 </div>
-<button class="btn-hero-primary intel-cta" data-cta="diferenciais">{{ diferenciais.cta }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<button class="btn-hero-primary intel-cta" data-cta="diferenciais">{{ diferenciais.cta | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
 </div>
 <div class="intel-grid" id="intelGrid">
 
@@ -259,8 +262,8 @@
 <article class="icard">
 <div class="icard-glow"></div><div class="icard-dots"></div>
 <div class="icard-top">
-<h3 class="icard-title">{{ diferenciais.card_perda.title }}</h3>
-<p class="icard-sub">{{ diferenciais.card_perda.sub }}</p>
+<h3 class="icard-title">{{ diferenciais.card_perda.title | fmt | safe }}</h3>
+<p class="icard-sub">{{ diferenciais.card_perda.sub | fmt | safe }}</p>
 </div>
 <div class="icard-chart">
 <span class="icard-badge ia-scale" style="--ia-delay:.8s"><span data-counter-target="{{ diferenciais.card_perda.valor_kg }}" data-counter-decimals="1" data-counter-prefix="−" data-counter-suffix=" kg">−{{ diferenciais.card_perda.valor_kg|pt }} kg</span></span>
@@ -272,7 +275,7 @@
 <path d="M0 11 C 22 15, 34 22, 52 29 C 72 36, 84 40, 100 46" fill="none" stroke="rgba(255,255,255,0.26)" stroke-width="1.5" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>
 <path class="ia-draw" d="M0 8 C 20 10, 32 18, 50 24 C 70 31, 82 36, 100 42" fill="none" stroke="#3B97E3" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
 </svg>
-<div class="icard-legend"><span><i class="lg-dash"></i>{{ diferenciais.card_perda.legenda_previsto }}</span><span><i class="lg-solid"></i>{{ diferenciais.card_perda.legenda_real }}</span></div>
+<div class="icard-legend"><span><i class="lg-dash"></i>{{ diferenciais.card_perda.legenda_previsto | fmt | safe }}</span><span><i class="lg-solid"></i>{{ diferenciais.card_perda.legenda_real | fmt | safe }}</span></div>
 </div>
 </article>
 
@@ -282,8 +285,8 @@
 <article class="icard icard-tall">
 <div class="icard-glow"></div><div class="icard-dots"></div>
 <div class="icard-top">
-<h3 class="icard-title">{{ diferenciais.card_perfil.title }}</h3>
-<p class="icard-sub">{{ diferenciais.card_perfil.sub }}</p>
+<h3 class="icard-title">{{ diferenciais.card_perfil.title | fmt | safe }}</h3>
+<p class="icard-sub">{{ diferenciais.card_perfil.sub | fmt | safe }}</p>
 </div>
 <div class="icard-radar">
 <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -311,7 +314,7 @@
 <path class="ia-draw" style="--ia-delay:.6s" d="M150 50 L232 102 L221 191 L150 238 L70 196 L65 101 Z" fill="none" stroke="url(#intelRadarB)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" filter="url(#intelGlow)"/>
 </svg>
 <div class="icard-legend icard-legend-center">
-<span><i class="lg-dot lg-dot-a"></i>{{ diferenciais.card_perfil.legenda_a }}</span><span><i class="lg-dot lg-dot-b"></i>{{ diferenciais.card_perfil.legenda_b }}</span>
+<span><i class="lg-dot lg-dot-a"></i>{{ diferenciais.card_perfil.legenda_a | fmt | safe }}</span><span><i class="lg-dot lg-dot-b"></i>{{ diferenciais.card_perfil.legenda_b | fmt | safe }}</span>
 </div>
 </div>
 </article>
@@ -320,8 +323,8 @@
 <article class="icard">
 <div class="icard-glow"></div><div class="icard-dots"></div>
 <div class="icard-top">
-<h3 class="icard-title">{{ diferenciais.card_adesao.title }}</h3>
-<p class="icard-sub">{{ diferenciais.card_adesao.sub }}</p>
+<h3 class="icard-title">{{ diferenciais.card_adesao.title | fmt | safe }}</h3>
+<p class="icard-sub">{{ diferenciais.card_adesao.sub | fmt | safe }}</p>
 </div>
 <div class="icard-orbit">
 <span class="orbit-sq orbit-sq-1 ia-spin"></span>
@@ -338,11 +341,11 @@
 <span class="ghost-num"><span data-counter-target="{{ diferenciais.card_exames.valor_ldl }}">{{ diferenciais.card_exames.valor_ldl }}</span></span>
 <span class="ghost-bar ia-width" style="--ia-w:100%"></span>
 </div>
-<span class="ghost-unit">{{ diferenciais.card_exames.unidade }}</span>
+<span class="ghost-unit">{{ diferenciais.card_exames.unidade | fmt | safe }}</span>
 </div>
 <div class="icard-top">
-<h3 class="icard-title">{{ diferenciais.card_exames.title }}</h3>
-<p class="icard-sub">{{ diferenciais.card_exames.sub }}</p>
+<h3 class="icard-title">{{ diferenciais.card_exames.title | fmt | safe }}</h3>
+<p class="icard-sub">{{ diferenciais.card_exames.sub | fmt | safe }}</p>
 </div>
 </article>
 
@@ -352,18 +355,18 @@
 <div class="icard-glow"></div><div class="icard-dots"></div>
 <div class="icard-bars">
 <div class="bars-head">
-<h4>{{ diferenciais.card_barras.titulo_grafico }}</h4>
-<span class="bars-pill">{{ diferenciais.card_barras.periodo }}<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+<h4>{{ diferenciais.card_barras.titulo_grafico | fmt | safe }}</h4>
+<span class="bars-pill">{{ diferenciais.card_barras.periodo | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
 </div>
 <div class="bars-list">
 {% for item in diferenciais.card_barras.itens %}
-<div class="bar-row"><span class="bar-name">{{ item.nome }}</span><span class="bar-track"><i class="ia-width" style="--ia-w:{{ item.percentual }}%;--ia-delay:.{{ loop.index }}s;--ia-c:{{ barColors[loop.index0 % barColors.length] }}"></i></span><span class="bar-val ia-fade" style="--ia-delay:.{{ loop.index }}s">{{ item.percentual }}%</span></div>
+<div class="bar-row"><span class="bar-name">{{ item.nome | fmt | safe }}</span><span class="bar-track"><i class="ia-width" style="--ia-w:{{ item.percentual }}%;--ia-delay:.{{ loop.index }}s;--ia-c:{{ barColors[loop.index0 % barColors.length] }}"></i></span><span class="bar-val ia-fade" style="--ia-delay:.{{ loop.index }}s">{{ item.percentual }}%</span></div>
 {% endfor %}
 </div>
 </div>
 <div class="icard-top">
-<h3 class="icard-title">{{ diferenciais.card_barras.title }}</h3>
-<p class="icard-sub">{{ diferenciais.card_barras.sub }}</p>
+<h3 class="icard-title">{{ diferenciais.card_barras.title | fmt | safe }}</h3>
+<p class="icard-sub">{{ diferenciais.card_barras.sub | fmt | safe }}</p>
 </div>
 </article>
 
@@ -377,11 +380,11 @@
 <div class="container">
 <div class="ciclo-inner">
 <div class="ciclo-left reveal">
-<span class="section-label">{{ app.label }}</span>
-<h2>{{ app.title }} <span class="text-gradient">{{ app.title_gradient }}</span></h2>
-<p class="ciclo-lead">{{ app.lead }}</p>
-<p class="ciclo-lead-accent">{{ app.lead_accent }}</p>
-<button class="btn-hero-primary ciclo-cta" data-cta="app">{{ app.cta }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<span class="section-label">{{ app.label | fmt | safe }}</span>
+<h2>{{ app.title | fmt | safe }} <span class="text-gradient">{{ app.title_gradient | fmt | safe }}</span></h2>
+<p class="ciclo-lead">{{ app.lead | fmt | safe }}</p>
+<p class="ciclo-lead-accent">{{ app.lead_accent | fmt | safe }}</p>
+<button class="btn-hero-primary ciclo-cta" data-cta="app">{{ app.cta | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
 <div class="ciclo-nav-row">
 <span class="ciclo-counter" id="appCounter">01 / {{ app.cards.length|pad2 }}</span>
 <div class="ciclo-arrows">
@@ -394,11 +397,11 @@
 <div class="showcase-track" id="appTrack" tabindex="0" aria-label="Telas do app do paciente">
 {% for card in app.cards %}
 <article class="showcase-card reveal-child">
-<div class="sc-header"><div class="sc-live-dot"></div><span class="sc-step">{{ card.category }}</span><span class="sc-tag">{{ card.tag }}</span></div>
+<div class="sc-header"><div class="sc-live-dot"></div><span class="sc-step">{{ card.category | fmt | safe }}</span><span class="sc-tag">{{ card.tag | fmt | safe }}</span></div>
 <div class="sc-img-wrap"><img src="{{ card.image }}" alt="{{ card.alt }}" loading="lazy"/></div>
 <div class="sc-body">
-<h3>{{ card.title }}</h3>
-<p>{{ card.text }}</p>
+<h3>{{ card.title | fmt | safe }}</h3>
+<p>{{ card.text | fmt | safe }}</p>
 </div>
 <div class="sc-num" aria-hidden="true">{{ loop.index|pad2 }}</div>
 </article>
@@ -407,7 +410,7 @@
 </div>
 </div>
 <div class="app-close reveal">
-<p class="app-quote">{{ app.quote_pre }}<span class="text-gradient">{{ app.quote_gradient }}</span></p>
+<p class="app-quote">{{ app.quote_pre | fmt | safe }}<span class="text-gradient">{{ app.quote_gradient | fmt | safe }}</span></p>
 <div class="store-badges">
 <a class="store-badge" href="#" data-link="appStore" aria-label="Disponível na App Store"><img class="store-mark" src="assets/brand/badge-apple.png" alt="" aria-hidden="true"/><span><small>Disponível na</small><b>App Store</b></span></a>
 <a class="store-badge" href="#" data-link="playStore" aria-label="Disponível no Google Play"><img class="store-mark" src="assets/brand/badge-play.png" alt="" aria-hidden="true"/><span><small>Disponível no</small><b>Google Play</b></span></a>
@@ -421,8 +424,8 @@
 <div class="container">
 <div class="garantia-band reveal">
 <div class="garantia-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></div>
-<h2>{{ garantia.title }}<span class="text-gradient">{{ garantia.title_gradient }}</span></h2>
-<p>{{ garantia.text }}</p>
+<h2>{{ garantia.title | fmt | safe }}<span class="text-gradient">{{ garantia.title_gradient | fmt | safe }}</span></h2>
+<p>{{ garantia.text | fmt | safe }}</p>
 </div>
 </div>
 </section>
@@ -431,15 +434,15 @@
 <div class="section-sep"></div>
 <div class="container">
 <div class="section-header reveal">
-<span class="section-label">{{ planos.label }}</span>
-<h2>{{ planos.title }}<span class="text-gradient">{{ planos.title_gradient }}</span></h2>
-<p>{{ planos.subtitle }}</p>
+<span class="section-label">{{ planos.label | fmt | safe }}</span>
+<h2>{{ planos.title | fmt | safe }}<span class="text-gradient">{{ planos.title_gradient | fmt | safe }}</span></h2>
+<p>{{ planos.subtitle | fmt | safe }}</p>
 </div>
 <div class="pricing-toggle reveal">
-<span class="toggle-label">{{ planos.toggle_mensal }}</span>
+<span class="toggle-label">{{ planos.toggle_mensal | fmt | safe }}</span>
 <div class="toggle-switch on" id="billingToggle" role="switch" aria-checked="true" tabindex="0" aria-label="Alternar entre cobrança mensal e anual"><div class="toggle-knob"></div></div>
-<span class="toggle-label">{{ planos.toggle_anual }}</span>
-<span class="toggle-badge">{{ planos.toggle_badge }}</span>
+<span class="toggle-label">{{ planos.toggle_anual | fmt | safe }}</span>
+<span class="toggle-badge">{{ planos.toggle_badge | fmt | safe }}</span>
 </div>
 <div class="pricing-grid stagger-up">
 {% for plan in planos.plans %}
@@ -447,25 +450,25 @@
 {% set mensalTotal = plan.mensal * 12 %}
 {% set economia = mensalTotal - anualTotal %}
 <div class="pricing-card{% if plan.featured %} featured{% endif %} reveal-child">
-{% if plan.badge %}<div class="pricing-popular-badge"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>{{ plan.badge }}</div>{% endif %}
-<p class="pricing-tier">{{ plan.tier }}</p>
-<p class="pricing-tagline">{{ plan.tagline }}</p>
+{% if plan.badge %}<div class="pricing-popular-badge"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>{{ plan.badge | fmt | safe }}</div>{% endif %}
+<p class="pricing-tier">{{ plan.tier | fmt | safe }}</p>
+<p class="pricing-tagline">{{ plan.tagline | fmt | safe }}</p>
 <div class="pricing-price"><sup>R$</sup><span class="price-val" data-anual="{{ plan.anual|brl }}" data-mensal="{{ plan.mensal|brl }}">{{ plan.anual|brl }}</span><span class="price-per">/mês</span></div>
 <p class="pricing-price-note note-anual">Cobrado R$ {{ anualTotal|brl }} uma vez no ano · <b>você economiza R$ {{ economia|brl }}</b></p>
 <p class="pricing-price-note note-mensal">Cobrado mensalmente · sem fidelidade</p>
 <ul class="pricing-features">
-<li class="pricing-feature pf-strong"><svg class="icon pricing-check" aria-hidden="true"><use href="#i-users"/></svg>{% if plan.limit_prefix %}{{ plan.limit_prefix }} <b>&nbsp;{{ plan.limit_strong }}</b>{% else %}<b>{{ plan.limit_strong }}</b>{% endif %}</li>
+<li class="pricing-feature pf-strong"><svg class="icon pricing-check" aria-hidden="true"><use href="#i-users"/></svg>{% if plan.limit_prefix.texto %}{{ plan.limit_prefix | fmt | safe }} <b>&nbsp;{{ plan.limit_strong | fmt | safe }}</b>{% else %}<b>{{ plan.limit_strong | fmt | safe }}</b>{% endif %}</li>
 {% for feat in plan.features %}
-<li class="pricing-feature"><svg class="icon pricing-check" aria-hidden="true"><use href="#i-check"/></svg>{{ feat.text }}</li>
+<li class="pricing-feature"><svg class="icon pricing-check" aria-hidden="true"><use href="#i-check"/></svg>{{ feat.text | fmt | safe }}</li>
 {% endfor %}
 </ul>
-<button class="pricing-cta {% if plan.featured %}pricing-cta-solid{% else %}pricing-cta-ghost{% endif %}" data-cta="plano-{{ plan.tier|lower }}">{{ plan.cta }}</button>
+<button class="pricing-cta {% if plan.featured %}pricing-cta-solid{% else %}pricing-cta-ghost{% endif %}" data-cta="plano-{{ plan.tier.texto|lower }}">{{ plan.cta | fmt | safe }}</button>
 </div>
 {% endfor %}
 </div>
 <div class="pricing-note reveal">
 <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
-<p>{{ planos.note }}</p>
+<p>{{ planos.note | fmt | safe }}</p>
 </div>
 </div>
 </section>
@@ -474,14 +477,14 @@
 <div class="section-sep"></div>
 <div class="container">
 <div class="section-header reveal">
-<span class="section-label">{{ duvidas.label }}</span>
-<h2>{{ duvidas.title }}<span class="text-gradient">{{ duvidas.title_gradient }}</span></h2>
+<span class="section-label">{{ duvidas.label | fmt | safe }}</span>
+<h2>{{ duvidas.title | fmt | safe }}<span class="text-gradient">{{ duvidas.title_gradient | fmt | safe }}</span></h2>
 </div>
 <div class="faq-list reveal" id="faqList">
 {% for item in duvidas.items %}
 <div class="faq-item">
-<button class="faq-q" aria-expanded="false">{{ item.question }}<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-<div class="faq-a"><div class="faq-a-inner"><p>{{ item.answer }}</p></div></div>
+<button class="faq-q" aria-expanded="false">{{ item.question | fmt | safe }}<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+<div class="faq-a"><div class="faq-a-inner"><p>{{ item.answer | fmt | safe }}</p></div></div>
 </div>
 {% endfor %}
 </div>
@@ -491,12 +494,12 @@
 <section id="cta-section">
 <div class="container" style="position:relative;z-index:1">
 <div class="reveal">
-<span class="section-label">{{ ctafinal.label }}</span>
-<h2 class="cta-title">{{ ctafinal.title_line1 }}<br/><span class="text-gradient">{{ ctafinal.title_gradient }}</span></h2>
-<p class="cta-sub">{{ ctafinal.sub }}</p>
+<span class="section-label">{{ ctafinal.label | fmt | safe }}</span>
+<h2 class="cta-title">{{ ctafinal.title_line1 | fmt | safe }}<br/><span class="text-gradient">{{ ctafinal.title_gradient | fmt | safe }}</span></h2>
+<p class="cta-sub">{{ ctafinal.sub | fmt | safe }}</p>
 <div class="cta-buttons">
-<button class="btn-cta-primary" data-cta="cta-final"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg>{{ ctafinal.cta_primary }}</button>
-<a class="btn-cta-ghost" href="#planos"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>{{ ctafinal.cta_ghost }}</a>
+<button class="btn-cta-primary" data-cta="cta-final"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg>{{ ctafinal.cta_primary | fmt | safe }}</button>
+<a class="btn-cta-ghost" href="#planos"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>{{ ctafinal.cta_ghost | fmt | safe }}</a>
 </div>
 </div>
 </div>
@@ -509,7 +512,7 @@
 <div class="footer-grid">
 <div class="footer-brand">
 <div class="nav-logo"><img class="logo-mark" src="assets/brand/deload-icon-dark.svg" alt="" width="416" height="416"/><img class="logo-word" src="assets/brand/deload-wordmark-dark.svg" alt="deLoad.fit" width="826" height="127"/></div>
-<p>{{ footer.brand_text }}</p>
+<p>{{ footer.brand_text | fmt | safe }}</p>
 </div>
 <div>
 <p class="footer-col-title">Produto</p>
@@ -542,7 +545,7 @@
 </div>
 <div class="footer-bottom">
 <div class="footer-bottom-left">
-<span class="footer-copy">© <span id="year">2026</span> {{ seo.organization.name }} · {{ footer.copy_text }}<svg class="icon footer-lock" aria-hidden="true"><use href="#i-lock"/></svg></span>
+<span class="footer-copy">© <span id="year">2026</span> {{ seo.organization.name }} · {{ footer.copy_text | fmt | safe }}<svg class="icon footer-lock" aria-hidden="true"><use href="#i-lock"/></svg></span>
 <span class="footer-entity">{{ seo.organization.legal_name }} · CNPJ {{ seo.organization.tax_id }}</span>
 </div>
 <div class="store-badges store-badges-sm">
@@ -568,15 +571,17 @@
 </div>
 </div>
 <!-- schema.org — gerado a partir dos mesmos dados da página, então preço e
-     FAQ nunca ficam diferentes do que o Google lê -->
+     FAQ nunca ficam diferentes do que o Google lê. Todo texto livre passa
+     por "dump" (JSON.stringify) para nunca gerar JSON inválido se o cliente
+     digitar aspas, quebra de linha etc. num campo. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "{{ seo.site_url }}#organizacao",
-  "name": "{{ seo.organization.name }}",
-  "legalName": "{{ seo.organization.legal_name }}",
-  "taxID": "{{ seo.organization.tax_id }}",
+  "name": {{ seo.organization.name | dump | safe }},
+  "legalName": {{ seo.organization.legal_name | dump | safe }},
+  "taxID": {{ seo.organization.tax_id | dump | safe }},
   "url": "{{ seo.site_url }}",
   "logo": {
     "@type": "ImageObject",
@@ -588,8 +593,8 @@
   "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "customer support",
-    "email": "{{ seo.organization.email }}",
-    "telephone": "{{ seo.organization.phone }}",
+    "email": {{ seo.organization.email | dump | safe }},
+    "telephone": {{ seo.organization.phone | dump | safe }},
     "areaServed": "BR",
     "availableLanguage": ["pt-BR"]
   }]
@@ -600,26 +605,27 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "@id": "{{ seo.site_url }}#software",
-  "name": "{{ seo.organization.name }}",
+  "name": {{ seo.organization.name | dump | safe }},
   "applicationCategory": "HealthApplication",
   "operatingSystem": "Web, iOS, Android",
   "url": "{{ seo.site_url }}",
   "inLanguage": "pt-BR",
-  "description": "{{ seo.software_description }}",
+  "description": {{ seo.software_description | dump | safe }},
   "publisher": { "@id": "{{ seo.site_url }}#organizacao" },
   "screenshot": "{{ seo.site_url }}{{ seo.og_image }}",
   "offers": [
 {% for plan in planos.plans %}
 {% set anualTotal = plan.anual * 12 %}
-{% set limiteTexto = plan.limit_prefix + " " + plan.limit_strong if plan.limit_prefix else plan.limit_strong %}
+{% set limiteTexto = (plan.limit_prefix.texto ~ " " ~ plan.limit_strong.texto) if plan.limit_prefix.texto else plan.limit_strong.texto %}
+{% set descTexto = limiteTexto ~ ". R$ " ~ (plan.anual|brl) ~ " por mês na assinatura anual (R$ " ~ (anualTotal|brl) ~ " cobrados uma vez no ano) ou R$ " ~ (plan.mensal|brl) ~ " no mês a mês, sem fidelidade. 7 dias grátis, sem cartão." %}
     {
       "@type": "Offer",
-      "name": "{{ plan.tier }}",
-      "category": "{{ plan.tagline }}",
-      "description": "{{ limiteTexto }}. R$ {{ plan.anual|brl }} por mês na assinatura anual (R$ {{ anualTotal|brl }} cobrados uma vez no ano) ou R$ {{ plan.mensal|brl }} no mês a mês, sem fidelidade. 7 dias grátis, sem cartão.",
+      "name": {{ plan.tier.texto | dump | safe }},
+      "category": {{ plan.tagline.texto | dump | safe }},
+      "description": {{ descTexto | dump | safe }},
       "price": "{{ plan.anual }}",
       "priceCurrency": "BRL",
-      "url": "{{ seo.site_url }}?plano={{ plan.tier|lower }}",
+      "url": "{{ seo.site_url }}?plano={{ plan.tier.texto|lower }}",
       "availability": "https://schema.org/InStock",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
@@ -638,7 +644,7 @@
   "@type": "FAQPage",
   "mainEntity": [
 {% for item in duvidas.items %}
-    { "@type": "Question", "name": "{{ item.question }}", "acceptedAnswer": { "@type": "Answer", "text": "{{ item.answer }}" } }{% if not loop.last %},{% endif %}
+    { "@type": "Question", "name": {{ item.question.texto | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.answer.texto | dump | safe }} } }{% if not loop.last %},{% endif %}
 {% endfor %}
   ]
 }

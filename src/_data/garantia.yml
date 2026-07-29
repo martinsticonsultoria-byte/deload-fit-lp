@@ -1,3 +1,18 @@
-title: "Teste sem risco. "
-title_gradient: "Sem cartão."
-text: "Comece grátis e use a plataforma de verdade por 7 dias, com acesso a tudo. Continue só se fizer sentido. Sem fidelidade, sem multa — cancele em um clique."
+title:
+  texto: 'Teste sem risco. '
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_gradient:
+  texto: Sem cartão.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+text:
+  texto: Comece grátis e use a plataforma de verdade por 7 dias, com acesso a tudo. Continue só se fizer sentido. Sem fidelidade, sem multa — cancele em um clique.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false

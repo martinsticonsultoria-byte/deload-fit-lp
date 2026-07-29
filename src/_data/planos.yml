@@ -1,47 +1,188 @@
-# Sexta dobra — preços. O cliente só edita "mensal" e "anual" de cada plano;
-# o texto "Cobrado R$X uma vez no ano · você economiza R$Y" é CALCULADO no
-# build a partir desses dois números (economia = (mensal - anual) × 12),
-# então nunca fica com um preço novo e um texto de economia antigo.
-label: "Planos"
-title: "Comece hoje. "
-title_gradient: "Cresça no seu ritmo."
-subtitle: "7 dias grátis em qualquer plano, com acesso a tudo. Sem cartão."
-toggle_mensal: "Mensal"
-toggle_anual: "Anual"
-toggle_badge: "Economize 25%"
-note: "Paciente ativo é quem tem plano vigente com você — inativo não conta na faixa. Passou do limite? Avisamos antes, nada trava no meio do atendimento e nada é cobrado sem você aprovar."
+# Sexta dobra — preços. O cliente só edita "mensal" e "anual" (números
+# puros, sem formatação) de cada plano; o texto "Cobrado R$X uma vez no
+# ano · você economiza R$Y" é CALCULADO no build a partir desses dois
+# números, então nunca fica com um preço novo e um texto de economia
+# antigo. Rótulos pequenos (toggle_*, limit_prefix, cta, badge) não têm
+# campo de tamanho — são pílulas de forma fixa.
+label:
+  texto: Planos
+  negrito: false
+  italico: false
+  sublinhado: false
+title:
+  texto: 'Comece hoje. '
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_gradient:
+  texto: Cresça no seu ritmo.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+subtitle:
+  texto: 7 dias grátis em qualquer plano, com acesso a tudo. Sem cartão.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+toggle_mensal:
+  texto: Mensal
+  negrito: false
+  italico: false
+  sublinhado: false
+toggle_anual:
+  texto: Anual
+  negrito: false
+  italico: false
+  sublinhado: false
+toggle_badge:
+  texto: Economize 25%
+  negrito: false
+  italico: false
+  sublinhado: false
+note:
+  texto: Paciente ativo é quem tem plano vigente com você — inativo não conta na faixa. Passou do limite? Avisamos antes, nada trava no meio do atendimento e nada é cobrado sem você aprovar.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
 plans:
-  - tier: "Essencial"
-    tagline: "Para quem está montando a carteira"
-    mensal: 89.90
-    anual: 66.90
-    limit_prefix: "Até"
-    limit_strong: "25 pacientes ativos"
+  - tier:
+      texto: Essencial
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    tagline:
+      texto: Para quem está montando a carteira
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    mensal: 89.9
+    anual: 66.9
+    limit_prefix:
+      texto: Até
+      negrito: false
+      italico: false
+      sublinhado: false
+    limit_strong:
+      texto: 25 pacientes ativos
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
     features:
-      - text: "Todos os recursos, sem exceção"
-      - text: "App do paciente incluso"
-    cta: "Começar grátis"
+      - text:
+          texto: Todos os recursos, sem exceção
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+      - text:
+          texto: App do paciente incluso
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+    cta:
+      texto: Começar grátis
+      negrito: false
+      italico: false
+      sublinhado: false
     featured: false
-  - tier: "Profissional"
-    tagline: "Para a carteira cheia do consultório"
-    mensal: 119.90
-    anual: 89.90
-    limit_prefix: "Até"
-    limit_strong: "50 pacientes ativos"
+  - tier:
+      texto: Profissional
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    tagline:
+      texto: Para a carteira cheia do consultório
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    mensal: 119.9
+    anual: 89.9
+    limit_prefix:
+      texto: Até
+      negrito: false
+      italico: false
+      sublinhado: false
+    limit_strong:
+      texto: 50 pacientes ativos
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
     features:
-      - text: "Todos os recursos, sem exceção"
-      - text: "App do paciente incluso"
-    cta: "Começar grátis"
+      - text:
+          texto: Todos os recursos, sem exceção
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+      - text:
+          texto: App do paciente incluso
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+    cta:
+      texto: Começar grátis
+      negrito: false
+      italico: false
+      sublinhado: false
     featured: true
-    badge: "Mais escolhido"
-  - tier: "Ilimitado"
-    tagline: "Para quem não quer pensar em limite"
-    mensal: 169.90
-    anual: 126.90
-    limit_prefix: ""
-    limit_strong: "Pacientes ativos sem limite"
+    badge:
+      texto: Mais escolhido
+      negrito: false
+      italico: false
+      sublinhado: false
+  - tier:
+      texto: Ilimitado
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    tagline:
+      texto: Para quem não quer pensar em limite
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    mensal: 169.9
+    anual: 126.9
+    limit_prefix:
+      texto: ''
+      negrito: false
+      italico: false
+      sublinhado: false
+    limit_strong:
+      texto: Pacientes ativos sem limite
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
     features:
-      - text: "Todos os recursos, sem exceção"
-      - text: "App do paciente incluso"
-    cta: "Começar grátis"
+      - text:
+          texto: Todos os recursos, sem exceção
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+      - text:
+          texto: App do paciente incluso
+          tamanho: '100'
+          negrito: false
+          italico: false
+          sublinhado: false
+    cta:
+      texto: Começar grátis
+      negrito: false
+      italico: false
+      sublinhado: false
     featured: false

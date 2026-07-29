@@ -1,6 +1,33 @@
-label: "Pronto para começar?"
-title_line1: "Menos planilha. Mais paciente."
-title_gradient: "Comece agora."
-sub: "7 dias grátis, sem cartão. Sua primeira prescrição sai hoje."
-cta_primary: "Começar grátis"
-cta_ghost: "Ver os planos"
+label:
+  texto: Pronto para começar?
+  negrito: false
+  italico: false
+  sublinhado: false
+title_line1:
+  texto: Menos planilha. Mais paciente.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_gradient:
+  texto: Comece agora.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+sub:
+  texto: 7 dias grátis, sem cartão. Sua primeira prescrição sai hoje.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+cta_primary:
+  texto: Começar grátis
+  negrito: false
+  italico: false
+  sublinhado: false
+cta_ghost:
+  texto: Ver os planos
+  negrito: false
+  italico: false
+  sublinhado: false

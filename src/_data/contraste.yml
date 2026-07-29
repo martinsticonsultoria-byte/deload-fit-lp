@@ -1,53 +1,231 @@
 # Terceira dobra — comparativo "Antes vs deLoad.fit". Os ícones vêm de uma
 # lista fechada (o mesmo conjunto do sprite da página) para o cliente nunca
-# escolher um nome que não existe e ficar com o quadradinho vazio.
-label: "O contraste"
-title_line1: "Seu atendimento hoje."
-title_line2_prefix: "Seu atendimento "
-title_line2_gradient: "no deLoad.fit."
-setup_pre: "O paciente não desiste na consulta. "
-setup_strong: "Ele desiste nos 30 dias seguintes"
-setup_post: " — exatamente o intervalo que a sua rotina de hoje não enxerga."
-col_before_tag: "Antes"
-col_after_tag: "deLoad.fit"
+# escolher um nome que não existe e ficar com o quadradinho vazio. Os rótulos
+# de coluna (col_before_tag/col_after_tag) e o botão não têm campo de
+# tamanho — são pílulas de forma fixa.
+label:
+  texto: O contraste
+  negrito: false
+  italico: false
+  sublinhado: false
+title_line1:
+  texto: Seu atendimento hoje.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_line2_prefix:
+  texto: 'Seu atendimento '
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+title_line2_gradient:
+  texto: no deLoad.fit.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+setup_pre:
+  texto: 'O paciente não desiste na consulta. '
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+setup_strong:
+  texto: Ele desiste nos 30 dias seguintes
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+setup_post:
+  texto: ' — exatamente o intervalo que a sua rotina de hoje não enxerga.'
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+col_before_tag:
+  texto: Antes
+  negrito: false
+  italico: false
+  sublinhado: false
+col_after_tag:
+  texto: deLoad.fit
+  negrito: false
+  italico: false
+  sublinhado: false
 before:
-  - icon: "message-square"
-    a: "Dieta no WhatsApp"
-    b: "paciente perde em dois dias"
-  - icon: "table"
-    a: "Treino em planilha"
-    b: "carga que ninguém registra"
-  - icon: "file-x"
-    a: "Exame em PDF"
-    b: "perdido no meio da conversa"
-  - icon: "image-off"
-    a: "Foto de evolução"
-    b: "sem comparar, sem contexto"
-  - icon: "trending-down"
-    a: "Adesão cai"
-    b: "você só descobre na próxima consulta"
-  - icon: "calendar-x"
-    a: "Plano vence"
-    b: "renovação que não acontece"
+  - icon: message-square
+    a:
+      texto: Dieta no WhatsApp
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: paciente perde em dois dias
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: table
+    a:
+      texto: Treino em planilha
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: carga que ninguém registra
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: file-x
+    a:
+      texto: Exame em PDF
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: perdido no meio da conversa
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: image-off
+    a:
+      texto: Foto de evolução
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: sem comparar, sem contexto
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: trending-down
+    a:
+      texto: Adesão cai
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: você só descobre na próxima consulta
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: calendar-x
+    a:
+      texto: Plano vence
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: renovação que não acontece
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
 after:
-  - icon: "smartphone"
-    a: "Plano no app"
-    b: "substituição sem quebrar o cálculo"
-  - icon: "dumbbell"
-    a: "Programa no app"
-    b: "carga registrada série a série"
-  - icon: "line-chart"
-    a: "Exame em gráfico"
-    b: "faixa de referência e alerta"
-  - icon: "layers"
-    a: "Comparativo lado a lado"
-    b: "evolução com data"
-  - icon: "bell-ring"
-    a: "Adesão em tempo real"
-    b: "alerta no dia em que cai"
-  - icon: "calendar-check"
-    a: "Agenda e cobrança"
-    b: "aviso automático para os dois"
-close_strong: "Pare de montar o quebra-cabeça antes de cada consulta."
-close_sub: "O que hoje vive espalhado em PDF, planilha e WhatsApp passa a viver em uma tela só."
-cta: "Começar grátis"
+  - icon: smartphone
+    a:
+      texto: Plano no app
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: substituição sem quebrar o cálculo
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: dumbbell
+    a:
+      texto: Programa no app
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: carga registrada série a série
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: line-chart
+    a:
+      texto: Exame em gráfico
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: faixa de referência e alerta
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: layers
+    a:
+      texto: Comparativo lado a lado
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: evolução com data
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: bell-ring
+    a:
+      texto: Adesão em tempo real
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: alerta no dia em que cai
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+  - icon: calendar-check
+    a:
+      texto: Agenda e cobrança
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+    b:
+      texto: aviso automático para os dois
+      tamanho: '100'
+      negrito: false
+      italico: false
+      sublinhado: false
+close_strong:
+  texto: Pare de montar o quebra-cabeça antes de cada consulta.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+close_sub:
+  texto: O que hoje vive espalhado em PDF, planilha e WhatsApp passa a viver em uma tela só.
+  tamanho: '100'
+  negrito: false
+  italico: false
+  sublinhado: false
+cta:
+  texto: Começar grátis
+  negrito: false
+  italico: false
+  sublinhado: false

@@ -3,7 +3,7 @@ eyebrow:
   tamanho: "112"
   negrito: false
   italico: false
-  sublinhado: true
+  sublinhado: false
 title_line1:
   texto: A prescrição que levava horas.
   tamanho: "100"

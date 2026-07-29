@@ -19,6 +19,34 @@ collections:
     label: "Página"
     files:
 
+      - file: "src/_data/aparencia.yml"
+        label: "⚙ Aparência (afeta a página toda)"
+        name: "aparencia"
+        fields:
+          - label: "Tamanho do texto"
+            name: "tamanho_fonte"
+            widget: "select"
+            hint: "Título, parágrafos e botões aumentam ou diminuem juntos, mantendo a proporção entre eles."
+            options:
+              - { label: "Pequeno", value: "90" }
+              - { label: "Padrão (recomendado)", value: "100" }
+              - { label: "Grande", value: "112" }
+              - { label: "Extra grande", value: "125" }
+
+      - file: "src/_data/links.yml"
+        label: "⚙ Contato e links"
+        name: "links"
+        fields:
+          - { label: "Link do \"Começar grátis\" (cadastro no app)", name: "signup", widget: "string", pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "WhatsApp (só números, com DDI e DDD — ex.: 5549991566172)", name: "whatsapp", widget: "string", required: false, pattern: ['^\d{10,13}$', "Só números, com código do país. Ex.: 5549991566172"] }
+          - { label: "E-mail de suporte", name: "email", widget: "string", required: false, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Não parece um e-mail válido"] }
+          - { label: "Link da App Store", name: "app_store", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "Link do Google Play", name: "play_store", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "Link do Instagram", name: "instagram", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "Link dos Termos de Uso", name: "termos", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "Link da Política de Privacidade", name: "privacidade", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+          - { label: "Link de Tratamento de dados (LGPD)", name: "lgpd", widget: "string", required: false, pattern: ['^https?://.+', "Precisa começar com http:// ou https://"] }
+
       - file: "src/_data/hero.yml"
         label: "1 · Topo da página"
         name: "hero"

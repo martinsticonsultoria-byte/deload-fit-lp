@@ -451,20 +451,24 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger-up').f
 })();
 
 /* ─── CTAs, âncoras e links externos ───────────────────────────────────────
-   Preencha LINKS quando as URLs reais existirem. Enquanto um campo estiver
-   vazio, o botão cai num destino interno coerente da própria página em vez
-   de não fazer nada.                                                      */
+   Os valores vêm de window.SITE_LINKS, montado no <head> a partir de
+   src/_data/links.yml (editável em /admin → Contato e links). Os defaults
+   abaixo só entram em ação se o site for aberto sem passar pelo template
+   (ex.: abrindo o HTML direto) — no site publicado, SITE_LINKS sempre existe.
+   Enquanto um campo estiver vazio, o botão cai num destino interno coerente
+   da própria página em vez de não fazer nada.                             */
 (function () {
+  const d = window.SITE_LINKS || {};
   const LINKS = {
-    signup:      'https://www.deloadfit.app/',
-    appStore:    '',   // ex.: 'https://apps.apple.com/br/app/...'
-    playStore:   '',   // ex.: 'https://play.google.com/store/apps/details?id=...'
-    email:       'leo-barros@unifebe.edu.br',   // vira mailto:
-    whatsapp:    '5549991566172',  // +55 49 99156-6172 (vira wa.me/)
-    instagram:   '',   // ex.: 'https://instagram.com/deload.fit'
-    termos:      '',
-    privacidade: '',
-    lgpd:        ''
+    signup:      d.signup ?? '',
+    appStore:    d.app_store ?? '',
+    playStore:   d.play_store ?? '',
+    email:       d.email ?? '',
+    whatsapp:    d.whatsapp ?? '',
+    instagram:   d.instagram ?? '',
+    termos:      d.termos ?? '',
+    privacidade: d.privacidade ?? '',
+    lgpd:        d.lgpd ?? ''
   };
 
   const NAV_H = 84; // altura da nav fixa, para a seção não ficar por baixo dela

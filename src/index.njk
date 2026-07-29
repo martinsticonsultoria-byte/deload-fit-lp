@@ -29,6 +29,10 @@
 <!-- css -->
 <!-- design-system.css: hero fold (tokens, typography, nav, hero, entrance, reduced-motion, responsive) -->
 <link rel="stylesheet" href="assets/css/design-system.css?v=14"/>
+<!-- Tamanho do texto (painel /admin → Aparência). Escala a raiz do documento
+     — como quase todo font-size do CSS usa rem/clamp(), título, parágrafos
+     e botões crescem ou encolhem juntos, mantendo a proporção entre eles. -->
+<style>:root{font-size:{{ aparencia.tamanho_fonte }}%;}</style>
 <noscript><style>.reveal, .reveal-child, .vs-panel .vs-list li { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
@@ -640,8 +644,13 @@
 }
 </script>
 <!-- js -->
+<!-- Links de contato (painel /admin → Contato e links). Roda antes do
+     interactions.js (que é "defer") para a variável já existir quando ele
+     ler LINKS. Campo vazio no painel = link ausente, mesmo comportamento
+     de antes quando o valor ficava em branco direto no código. -->
+<script>window.SITE_LINKS = {{ links | dump | safe }};</script>
 <!-- interactions.js: hero WebGL aurora shader (recolorido), parallax de fundo, mobile nav -->
-<script src="assets/js/interactions.js?v=13" defer></script>
+<script src="assets/js/interactions.js?v=14" defer></script>
 <!-- Netlify Identity — só carrega o widget se o visitante chegou aqui com um
      token de confirmação/convite/recuperação de senha na URL (o e-mail da
      Netlify sempre redireciona para a raiz do site, nunca direto para

@@ -1,0 +1,6 @@
+# Aplicado no <html> inteiro via uma única variável CSS — título, texto e
+# botões aumentam ou diminuem juntos, mantendo a proporção entre eles.
+# 95 das 96 declarações de tamanho no CSS usam unidade relativa (rem/clamp),
+# então praticamente tudo escala. A única exceção conhecida é um texto de
+# 11px num selo pequeno, que fica quase do mesmo tamanho em qualquer opção.
+tamanho_fonte: "100"

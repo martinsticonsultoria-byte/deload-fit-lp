@@ -1,0 +1,13 @@
+# Para onde os botões e links da página apontam. Nada aqui muda o visual —
+# só o destino de cada clique. Campo vazio = o link some do jeito que já
+# tratamos em interactions.js (ex.: sem WhatsApp cadastrado, o botão de
+# suporte simplesmente não aparece clicável).
+signup: "https://www.deloadfit.app/"
+whatsapp: "5549991566172"
+email: "leo-barros@unifebe.edu.br"
+app_store: ""
+play_store: ""
+instagram: ""
+termos: ""
+privacidade: ""
+lgpd: ""
